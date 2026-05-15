@@ -1,0 +1,77 @@
+/* Added Caveat for the handwritten subtext */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Caveat:wght@400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --nexa-cyan: 189 94% 43%;
+    --savannah-gold: 38 92% 50%;
+  }
+
+  * {
+    @apply border-borderSoft; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[#030303] text-foreground font-sans;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(6, 181, 212, 0.05) 0, transparent 40%),
+      radial-gradient(at 100% 100%, rgba(245, 159, 11, 0.03) 0, transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* Handwritten utility for that "architect's note" feel */
+  .handwritten {
+    font-family: 'Caveat', cursive;
+    /* Handwritten fonts need extra tracking and line-height for dark mode */
+    @apply tracking-wide leading-snug;
+    text-rendering: optimizeLegibility;
+  }
+
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)];
+  }
+
+  /* Shimmer Animation fix: ensured opacity is visible but subtle */
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
+  }
+}
+
+/* Custom Minimalist Scrollbar - Matches the Zaynex Sidebar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-full hover:bg-cyan-500/50 transition-all;
+}
+
+/* Typography polish */
+h1, h2, h3 {
+  text-wrap: balance;
+  @apply tracking-tighter antialiased;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}

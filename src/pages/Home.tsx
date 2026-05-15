@@ -1,0 +1,75 @@
+import Hero from "../components/home/Hero";
+import Stats from "../components/home/Stats";
+import ServicesPreview from "../components/home/ServicesPreview";
+import TechStack from "../components/home/TechStack";
+import IndustriesPreview from "../components/home/IndustriesPreview";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
+import GlobalPresence from "@/components/home/GlobalPresence";
+import InteractiveGrid from "@/components/ui/interactive-grid";
+import PhoneShowcase from "@/components/home/PhoneShowcase";
+import { useEffect, useState } from "react";
+import { ArrowUp } from "lucide-react";
+
+const Home = () => {
+const [showScrollTop, setShowScrollTop] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setShowScrollTop(window.scrollY > 100);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+  return (
+    // Locked in the #030303 background for maximum contrast
+    <main className="relative flex min-h-screen flex-col bg-[#030303] text-zinc-200 antialiased">
+     <InteractiveGrid />
+
+     {showScrollTop && (
+  <button
+    onClick={() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }}
+    className="group fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-500/20 bg-[#081120]/80 text-cyan-300 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]"
+    aria-label="Scroll to top"
+  >
+    <ArrowUp
+      size={20}
+      className="transition-transform duration-300 group-hover:-translate-y-1"
+    />
+  </button>
+)}
+
+      <Hero />
+      
+      <div className="relative z-10">
+        <Stats />
+      </div>
+
+      <PhoneShowcase />
+      <ServicesPreview />
+
+      
+      <FeaturedProjects />
+
+      <GlobalPresence />
+    
+  
+      
+      <TechStack />
+      
+      <IndustriesPreview />
+      
+      
+    </main>
+  );
+};
+
+export default Home;
