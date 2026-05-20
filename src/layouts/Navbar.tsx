@@ -95,7 +95,9 @@ const Navbar = () => {
           {/* Actions & Mobile Toggle */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link 
-              to="/login" 
+              to="https://client.zaynex.tech/" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="group hidden items-center gap-1 text-sm font-medium text-zinc-300 transition-colors hover:text-white lg:flex whitespace-nowrap"
             >
               Client portal

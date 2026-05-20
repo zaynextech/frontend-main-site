@@ -54,9 +54,11 @@ export default function PageShowcase() {
               We have Huge collection fo cosmetics in Paris Branch our Products are always Quality products.
             </p>
             <Link
-              to="/demo1"
-            className="w-fit bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-xs sm:text-sm tracking-wide hover:bg-neutral-800 transition-all flex items-center gap-2 shadow-lg shadow-black/10">
-              Explore Products
+              to="https://demo1.zaynex.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+            className="w-fit bg-black text-white px-6 sm:px-8 py-3 sm:py-3 rounded-full font-medium text-xs sm:text-sm tracking-wide hover:bg-neutral-800 transition-all flex items-center gap-2 shadow-lg shadow-black/10">
+              View Live Site
             </Link>
           </div>
 

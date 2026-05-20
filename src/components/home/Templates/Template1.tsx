@@ -45,18 +45,18 @@ export default function Template1() {
         </div>
 
          {/* Right Column: Mini Mockup Viewport Container */}
-<div className="col-span-12 md:col-span-8 flex justify-end items-center relative z-10">
+            <div className="col-span-12 md:col-span-8 flex justify-end items-center relative z-10">
 
-  {/* Showcase Wrapper */}
-  <div className="w-full transform scale-75 lg:scale-80 origin-right transition-all duration-700 ease-out hover:-translate-y-1">
-    
-    {/* Blurred Ambient Glow Underlay */}
-    <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-pink-500/10 to-amber-300/10 blur-3xl opacity-70 rounded-[32px] pointer-events-none transition-all duration-700 group-hover:opacity-100" />
-    
-    {/* Ultra-Glassy Container */}
-    <div className="relative rounded-[32px] overflow-hidden backdrop-blur-md bg-white/[0.03] p-5 border border-white/10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),_0_0_120px_rgba(6,182,212,0.15)] transition-all duration-700 ">
+              {/* Showcase Wrapper */}
+              <div className="w-full transform scale-75 lg:scale-80 origin-right transition-all duration-700 ease-out hover:-translate-y-1">
+                
+                {/* Blurred Ambient Glow Underlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-pink-500/10 to-amber-300/10 blur-3xl opacity-70 rounded-[32px] pointer-events-none transition-all duration-700 group-hover:opacity-100" />
+                
+                {/* Ultra-Glassy Container */}
+                <div className="relative rounded-[32px] overflow-hidden backdrop-blur-md bg-white/[0.03] p-5 border border-white/10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),_0_0_120px_rgba(6,182,212,0.15)] transition-all duration-700 ">
 
-      <PageShowcase />
+                  <PageShowcase />
 
     </div>
   </div>
