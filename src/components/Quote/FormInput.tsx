@@ -9,7 +9,6 @@ type Props = {
   value: string;
   error?: string;
   className?: string;
-  // Adjusted to match the main handleChange signature
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -23,37 +22,60 @@ const FormInput = ({
   onChange,
 }: Props) => {
   return (
-    <div className={`group flex flex-col gap-2 ${className}`}>
-      <label 
+    <div className={`flex flex-col gap-2 ${className || ""}`}>
+
+      {/* LABEL */}
+      <label
         htmlFor={name}
-        className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500 ml-1 transition-colors group-focus-within:text-cyan-500"
+        className="text-[10px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1 transition-colors group-focus-within:text-cyan-400"
       >
         {placeholder}
       </label>
 
+      {/* INPUT WRAPPER */}
       <div className="relative">
+
         <input
           id={name}
           name={name}
           type={type}
-          placeholder={`Enter ${placeholder.toLowerCase()}...`}
           value={value}
           onChange={onChange}
+          placeholder={`Enter ${placeholder.toLowerCase()}...`}
           className={`
-            w-full px-4 py-4 rounded-xl text-sm transition-all duration-300 outline-none
-            bg-white/[0.03] border backdrop-blur-sm text-white placeholder:text-zinc-600
-            ${error 
-              ? "border-red-500/50 bg-red-500/5 focus:border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.1)]" 
-              : "border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.05] focus:shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+            w-full
+            rounded-xl
+            px-4 py-3
+            text-sm
+            text-white
+            placeholder:text-zinc-400
+            bg-black/30
+            border
+            backdrop-blur-md
+            outline-none
+            transition-all duration-300
+
+            sm:py-4 sm:text-sm
+
+            ${
+              error
+                ? "border-red-500/40 focus:border-red-500 focus:bg-red-500/5"
+                : "border-white/10 focus:border-cyan-500/40 focus:bg-white/[0.05]"
             }
+
+            focus:shadow-[0_0_20px_rgba(6,182,212,0.12)]
           `}
         />
-        <div className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300 opacity-0 group-focus-within:opacity-100 ring-1 ring-inset ring-cyan-500/20" />
+
+        {/* GLOW EFFECT */}
+        <div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition group-focus-within:opacity-100 ring-1 ring-cyan-500/20" />
       </div>
 
+      {/* ERROR */}
       {error && (
-        <p className="text-red-400 text-[11px] font-medium mt-1 ml-1 animate-in fade-in slide-in-from-top-1 duration-200">
-          <span className="mr-1">✕</span> {error}
+        <p className="text-[11px] text-red-400 font-medium ml-1 flex items-center gap-1">
+          <span>✕</span>
+          {error}
         </p>
       )}
     </div>

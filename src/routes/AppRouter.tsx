@@ -18,6 +18,7 @@ import Terms from "@/pages/Terms";
 import AgreementPage from "@/pages/AgreementPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import RefundPolicyPage from "@/pages/RefundPolicyPage";
+import CosmeticsLandingPage from "@/pages/Demo1";
 
 
 
@@ -99,6 +100,10 @@ const AppRouter = () => {
             element={<RefundPolicyPage/>}
             />
 
+             <Route
+            path="/Demo1"
+            element={<CosmeticsLandingPage/>}
+            />
         </Route>
       
     

@@ -7,9 +7,12 @@
     "skipLibCheck": true,
 
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+
     "paths": {
       "@/*": ["src/*"]
     },
+
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,

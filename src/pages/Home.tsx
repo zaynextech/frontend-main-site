@@ -9,6 +9,7 @@ import InteractiveGrid from "@/components/ui/interactive-grid";
 import PhoneShowcase from "@/components/home/PhoneShowcase";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import Template1 from "@/components/home/Templates/Template1";
 
 const Home = () => {
 const [showScrollTop, setShowScrollTop] = useState(false);
@@ -55,6 +56,8 @@ useEffect(() => {
 
       <PhoneShowcase />
       <ServicesPreview />
+
+      <Template1 />
 
       
       <FeaturedProjects />
