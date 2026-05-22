@@ -73,7 +73,7 @@ const Hero = () => {
         transition={{ delay: 0.2, duration: 0.8 }}
         className="handwritten z-10 mt-6 sm:mt-8 max-w-2xl text-lg sm:text-2xl md:text-3xl text-zinc-300 antialiased leading-relaxed"
       >
-        Zaynex builds modern websites and web apps for businesses looking to 
+        Zaynex builds modern websites and web apps for businesses looking to{"  "} 
       <span className="text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.2)] whitespace-nowrap">
         grow online.
       </span>
