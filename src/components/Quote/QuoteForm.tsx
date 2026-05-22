@@ -119,16 +119,17 @@ const QuoteForm = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#030303] px-6 py-24 text-white lg:px-10">
-      {/* BG GLOW */}
+    <section className="relative min-h-screen overflow-hidden border-t border-cyan-500/10 bg-[#030303] px-4 py-10 text-white antialiased sm:px-6 lg:px-10 lg:py-24">
+      {/* BACKGROUND CYBER GRID (MATCHED TO FOOTER) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
+    
+      {/* LIGHT BLOOM GLOW (MATCHED TO FOOTER) */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl md:h-[500px] md:w-[500px]" />
       
-      <div className="absolute left-1/2 top-0 -z-10 h-[500px] w-full -translate-x-1/2 rounded-full bg-cyan-500/5 blur-[120px]" />
-      
-
-      <div className="mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         {/* HEADER */}
         <div className="mb-10 text-center">
-          <h1 className="mt-1 text-5xl font-extrabold leading-[0.9] tracking-tighter lg:text-5xl">
+          <h1 className="mt-1 text-2xl font-extrabold leading-tight tracking-tighter sm:text-5xl sm:leading-[0.9]">
             Architect Your
             <br />
             <span className="bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-transparent">
@@ -136,18 +137,18 @@ const QuoteForm = () => {
             </span>
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-relaxed text-zinc-300">
+          <p className="mx-auto mt-3 max-w-2xl text-base font-light leading-relaxed text-zinc-300 sm:mt-8 sm:text-lg">
             Submit your project requirements and our engineering team will
             prepare a tailored software proposal.
           </p>
         </div>
 
         {/* FORM CONTAINER */}
-        <div className="rounded-[2rem] border border-white/10 bg-[#030303] p-6 backdrop-blur-2xl md:p-10">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-[#030303]/10 p-4 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2 md:gap-y-10">
             {/* SECTION */}
             <div className="col-span-full border-b border-white/5 pb-4">
-              <h2 className="text-xs tracking-[0.3em] text-cyan-400">
+              <h2 className="text-xs  text-cyan-100">
                 01. CLIENT IDENTITY
               </h2>
             </div>
@@ -175,9 +176,9 @@ const QuoteForm = () => {
             />
 
             {/* SECTION */}
-            <div className="col-span-full mt-8 border-b border-white/5 pb-4">
-              <h2 className="text-xs font-mono tracking-[0.3em] text-purple-400">
-                02. PROJECT SPECIFICATIONS
+            <div className="col-span-full mt-4 border-b border-white/5 pb-4 md:mt-8">
+              <h2 className="text-xs  text-cyan-100">
+                02. PROJECT  SPECIFICATIONS
               </h2>
             </div>
 
@@ -230,7 +231,7 @@ const QuoteForm = () => {
             })}
 
             {/* CHECKBOXES */}
-            <div className="col-span-full mt-2 flex flex-wrap gap-8 rounded-2xl border border-white/5 bg-white/[0.02] px-8 py-6">
+            <div className="col-span-full mt-2 flex flex-col gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 sm:flex-row sm:flex-wrap sm:gap-8 sm:rounded-2xl sm:px-8 sm:py-6">
               {checkboxFields.map((field) => (
                 <FormCheckbox
                   key={field.name}
@@ -245,31 +246,38 @@ const QuoteForm = () => {
             </div>
           </div>
 
-          {/* CALL OUT */}
-          <div className="mt-16 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-10">
-            <h3 className="text-2xl font-bold text-white">
-              Serious Project Inquiries Only
+    {/* CALL OUT */}
+          <div className="mt-8 rounded-2xl border border-white/10 border-l-cyan-500/30 bg-gradient-to-b from-cyan-500/[0.02] via-transparent to-transparent p-5 sm:p-6 md:mt-16 md:rounded-[2rem] md:p-10">
+            <h3 className="text-xl font-bold tracking-tight text-white/90 sm:text-2xl">
+              Let's Build Something Great
             </h3>
 
-            <p className="mt-4 max-w-3xl leading-relaxed text-zinc-400">
-              Our engineering team reviews enterprise-grade software requests,
-              scalable SaaS platforms, ERP systems, AI infrastructure, and
-              digital transformation projects.
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:mt-4 sm:text-base">
+              Our engineering team reviews custom software, SaaS, and AI infrastructure requests. Submit your details below, and we will get back to you with a tailored proposal in less than 12 hours.
             </p>
           </div>
 
           {/* SUBMIT */}
-          <div className="group relative mt-12">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 opacity-25 blur transition duration-500 group-hover:opacity-50" />
+          <div className="group relative mt-8 md:mt-12">
+            {/* Ambient Background Glow */}
+            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 opacity-20 blur-md transition duration-500 group-hover:opacity-40" />
 
             <Button
               onClick={submitQuote}
               disabled={loading}
-              className="relative h-16 w-full rounded-full bg-white text-lg font-bold text-black shadow-2xl transition-all hover:bg-cyan-400"
+              className="relative flex h-12 w-full items-center justify-center rounded-full bg-white text-base font-bold text-black shadow-2xl transition-all duration-300 transform active:scale-[0.99] hover:bg-black hover:text-cyan-400 hover:border hover:border-cyan-500/30 sm:h-16 sm:text-lg disabled:opacity-50 disabled:pointer-events-none"
             >
-              {loading
-                ? "Transmitting Requirements..."
-                : "Submit Enterprise Quote Request"}
+              {loading ? (
+                <div className="flex items-center gap-2">
+                  <svg className="h-5 w-5 animate-spin text-current" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  <span>Transmitting Requirements...</span>
+                </div>
+              ) : (
+                "Submit your project requirements"
+              )}
             </Button>
           </div>
         </div>

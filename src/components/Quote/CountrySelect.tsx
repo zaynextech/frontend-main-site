@@ -30,7 +30,7 @@ const options: CountryOption[] = countries.map((country) => ({
           objectFit: 'cover'
         }}
       />
-      <span className="font-medium text-sm">{country.name}</span>
+      <span className="font-medium text-base md:text-sm">{country.name}</span>
     </div>
   ),
 }));
@@ -43,7 +43,7 @@ const customStyles: StylesConfig<CountryOption, false> = {
     backdropFilter: "blur(8px)",
     borderColor: state.isFocused ? "rgba(6, 182, 212, 0.5)" : "rgba(255, 255, 255, 0.1)",
     borderRadius: "12px",
-    padding: "4px",
+    padding: "6px 4px",
     boxShadow: state.isFocused ? "0 0 0 1px rgba(6, 182, 212, 0.2)" : "none",
     "&:hover": {
       borderColor: "rgba(255, 255, 255, 0.2)",
@@ -61,6 +61,11 @@ const customStyles: StylesConfig<CountryOption, false> = {
     backdropFilter: "blur(12px)",
     zIndex: 50,
   }),
+  menuList: (base) => ({
+    ...base,
+    maxHeight: "220px",
+    overflowY: "auto",
+  }),
   option: (base, state) => ({
     ...base,
     backgroundColor: state.isSelected 
@@ -70,7 +75,7 @@ const customStyles: StylesConfig<CountryOption, false> = {
       : "transparent",
     color: state.isSelected ? "#22d3ee" : "#a1a1aa",
     cursor: "pointer",
-    padding: "10px 16px",
+    padding: "12px 16px",
     "&:active": {
       backgroundColor: "rgba(255, 255, 255, 0.1)",
     },
@@ -78,15 +83,26 @@ const customStyles: StylesConfig<CountryOption, false> = {
   singleValue: (base) => ({
     ...base,
     color: "#fff",
+    fontSize: "16px",
+    "@media (min-width: 768px)": {
+      fontSize: "14px",
+    },
   }),
   input: (base) => ({
     ...base,
     color: "#fff",
+    fontSize: "16px",
+    "@media (min-width: 768px)": {
+      fontSize: "14px",
+    },
   }),
   placeholder: (base) => ({
     ...base,
     color: "#52525b",
-    fontSize: "0.875rem",
+    fontSize: "16px",
+    "@media (min-width: 768px)": {
+      fontSize: "14px",
+    },
   }),
   indicatorSeparator: () => ({
     display: "none",

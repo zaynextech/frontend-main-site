@@ -1,10 +1,10 @@
 import QuoteForm from "@/components/Quote/QuoteForm";
-import InteractiveGridInput from "@/components/InteractiveGridInput";
 
 const Quote = () => {
   return (
     <div
-      className="relative min-h-screen bg-black overflow-hidden"
+      className="relative min-h-screen bg-black overflow-hidden select-none sm:select-auto"
+      
       onMouseMove={(e) => {
         const rect =
           e.currentTarget.getBoundingClientRect();
@@ -19,9 +19,9 @@ const Quote = () => {
           `${e.clientY - rect.top}px`
         );
       }}
+      
     >
-      {/* Grid */}
-      <InteractiveGridInput />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
 
       {/* Form */}
       <QuoteForm />

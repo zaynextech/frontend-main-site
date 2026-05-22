@@ -170,7 +170,7 @@ const Navbar = () => {
               </nav>
 
               {/* Bottom Mobile Action buttons */}
-              <div className="mt-auto space-y-4 border-t border-white/5 pt-6">
+              <div className="mt-auto space-y-4 border-t border-white/5 pt-6 mb-20">
                 <Link 
                   to="/login"
                   onClick={() => setIsOpen(false)}

@@ -68,30 +68,30 @@ const FeatureSelector =
       };
 
     return (
-      <div className="col-span-2 space-y-6">
+      <div className="col-span-full space-y-6">
 
         {/* HEADER */}
         <div className="flex items-center justify-between">
 
-          <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-300">
 
             Project Capabilities
 
           </h3>
 
-          <span className="font-mono text-[10px] text-zinc-600">
+          <span className="font-mono text-[15px] text-green-400">
 
             {
               selected.length
             }{" "}
-            SELECTED
+            <span className="font-mono text-[15px] text-zinc-200">  SELECTED </span>
 
           </span>
 
         </div>
 
         {/* FEATURES */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2.5 sm:gap-2">
 
           {featureList.map(
             (
@@ -178,7 +178,7 @@ const FeatureSelector =
 
                 ? "border-cyan-500/50 bg-cyan-500/10 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.1)]"
 
-                : "border-white/5 bg-white/[0.02] text-zinc-500 hover:border-white/20 hover:text-zinc-300"
+                : "border-white/5 bg-white/[0.02] text-zinc-300 hover:border-white/20 hover:text-zinc-200"
             }`}
           >
 
@@ -243,7 +243,8 @@ const FeatureSelector =
                 border-white/10
                 bg-[#0a0a0a]
                 p-4
-                text-sm
+                text-base
+                md:text-sm
                 text-white
                 outline-none
                 transition-all
@@ -254,7 +255,7 @@ const FeatureSelector =
               "
             />
 
-            <div className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-zinc-600">
+            <div className="pointer-events-none absolute bottom-3 right-3 hidden font-mono text-[10px] text-zinc-600 sm:block">
 
               MARKDOWN SUPPORTED
 

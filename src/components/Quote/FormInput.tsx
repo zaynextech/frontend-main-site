@@ -21,8 +21,13 @@ const FormInput = ({
   className,
   onChange,
 }: Props) => {
+  // Safe override to ensure incoming desktop col-spans don't collapse mobile grids
+  const baseClassName = className?.includes("col-span")
+    ? className.replace(/col-span-\d+|col-span-full/, "col-span-1 md:$&")
+    : className;
+
   return (
-    <div className={`flex flex-col gap-2 ${className || ""}`}>
+    <div className={`group flex flex-col gap-2 ${baseClassName || ""}`}>
 
       {/* LABEL */}
       <label
@@ -45,8 +50,8 @@ const FormInput = ({
           className={`
             w-full
             rounded-xl
-            px-4 py-3
-            text-sm
+            px-4 py-3.5
+            text-base md:text-sm
             text-white
             placeholder:text-zinc-400
             bg-black/30
@@ -55,7 +60,7 @@ const FormInput = ({
             outline-none
             transition-all duration-300
 
-            sm:py-4 sm:text-sm
+            sm:py-4
 
             ${
               error

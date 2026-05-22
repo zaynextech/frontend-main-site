@@ -82,6 +82,7 @@ export const selectFields = [
     name: "budgetRange",
     placeholder: "Estimated Budget",
     options: [
+      "$100 - $500",
       "$500 - $1,000",
       "$1,000 - $5,000",
       "$5,000 - $20,000",

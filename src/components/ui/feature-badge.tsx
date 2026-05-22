@@ -182,7 +182,7 @@ export default function FeatureBadge({ name }: Props) {
 
       <Icon className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
 
-      <span className="text-xs font-medium text-zinc-300">
+      <span className="text-xs font-medium text-white">
         {name}
       </span>
     </div>
