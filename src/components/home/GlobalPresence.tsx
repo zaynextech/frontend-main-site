@@ -104,18 +104,16 @@ const GlobalPresence = () => {
     {/* Header */}
     <div className="mb-12 flex flex-col items-center text-center">
       
-      <HeaderIndicator>
-        Global Presence
-      </HeaderIndicator>
+    
 
-      <h2 className="mt-5 max-w-4xl text-3xl font-black tracking-tight text-white md:text-5xl">
+      <h2 className="mt-5 max-w-4xl text-2xl font-black tracking-tight text-white/90 md:text-5xl">
         Serving businesses across{" "}
-        <span className="bg-gradient-to-b from-white to-zinc-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-b from-white/80 to-zinc-600 bg-clip-text text-transparent">
           multiple regions.
         </span>
       </h2>
 
-      <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
+      <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-200">
         We design scalable software systems and modern digital platforms
         for businesses operating globally.
       </p>

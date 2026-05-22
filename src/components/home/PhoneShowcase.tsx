@@ -23,14 +23,14 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
             <div className="md:col-span-7 flex flex-col items-start gap-6">
            
 
-              <h2 className="text-4xl lg:text-6xl font-black leading-none tracking-tighter text-white">
+              <h2 className="text-4xl lg:text-6xl font-black leading-none tracking-tighter text-white/90">
                 Perfect on desktop.{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-600">
                   Powerful on mobile.
                 </span>
               </h2>
 
-              <p className="max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl font-light">
+              <p className="max-w-2xl text-sm leading-relaxed text-zinc-300 md:text-xl font-light">
                 Every Zaynex platform is engineered with fully responsive architecture,
                 delivering seamless performance across phones, tablets, laptops, and
                 ultra-wide displays. Fast, fluid, and optimized for every screen size.

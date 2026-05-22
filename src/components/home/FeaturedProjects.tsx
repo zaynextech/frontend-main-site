@@ -57,22 +57,10 @@ const FeaturedProjects = () => {
         {/* Header - Semantic Search Optimization */}
         <header className="mb-12 md:mb-20">
           <div className="flex w-full flex-col items-start justify-between gap-8 md:flex-row md:items-end border-b border-white/10 pb-8 md:pb-12">
-            <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl">
-              {/* Badge: High-contrast glowing variant */}
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-cyan-400/40 bg-cyan-950/40 px-4 py-2 text-[10px] uppercase tracking-[0.3em] font-black text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md select-none w-fit">
-                {/* The Pulse: Multi-layered glow for depth */}
-                <span className="relative flex h-2 w-2" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
-                </span>
-                <span className="antialiased drop-shadow-[0_0_2px_rgba(34,211,238,0.5)]">
-                  Featured Work
-                </span>
-              </div>
-              
+            <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl">     
               {/* Heading */}
               <h2 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter text-zinc-100 text-balance leading-[1.05] md:leading-[0.95] antialiased">
-                We build <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-200 to-zinc-500">smart business</span> solutions.
+                We build <span className="bg-clip-text text-transparent bg-gradient-to-b from-white/80 via-zinc-200 to-zinc-500">smart business</span> solutions.
               </h2>
             </div>
 
@@ -80,14 +68,14 @@ const FeaturedProjects = () => {
               <div className="hidden md:flex flex-col items-end text-right select-none">
                 <span className="text-5xl font-black text-zinc-800 font-mono tracking-tighter italic leading-none">04</span>
                 <p className="text-sm text-zinc-300 font-medium max-w-[220px] leading-relaxed mt-2">
-                  Engineering scalable infrastructure for <span className="text-white border-b border-cyan-500/30">enterprise brands.</span>
+                  Engineering scalable infrastructure for <span className="text-white/70 border-b border-cyan-500/30">enterprise brands.</span>
                 </p>
               </div>
 
               {/* Link */}
               <Link 
                 to="/portfolio" 
-                className="group flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-black text-white transition-all hover:text-cyan-400"
+                className="group flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-black text-white/80 transition-all hover:text-cyan-400"
                 aria-label="Explore global portfolio archive"
               >
                 <span className="relative">
@@ -107,8 +95,8 @@ const FeaturedProjects = () => {
               <div key={s} className="flex flex-col gap-6 animate-pulse" aria-hidden="true">
                 <div className="aspect-[16/10] w-full rounded-2xl bg-white/5 border border-white/5" />
                 <div className="space-y-3">
-                  <div className="h-3 w-20 rounded bg-white/5" />
-                  <div className="h-8 w-3/4 rounded bg-white/10" />
+                  <div className="h-3 w-20 rounded bg-white/30" />
+                  <div className="h-8 w-3/4 rounded bg-white/30" />
                   <div className="h-4 w-full rounded bg-white/5" />
                 </div>
               </div>
@@ -136,7 +124,7 @@ const FeaturedProjects = () => {
                     
                     {/* Category Badge - Anchored to Image */}
                     <div className="absolute top-4 left-4 transform -translate-y-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 select-none">
-                      <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] uppercase tracking-widest font-bold text-white">
+                      <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] uppercase tracking-widest font-bold text-white/90">
                         {project.category}
                       </span>
                     </div>
@@ -147,7 +135,7 @@ const FeaturedProjects = () => {
                     <div>
                       <div className="flex items-center gap-3 select-none">
                         <Layers className="h-3 w-3 text-cyan-500 shrink-0" aria-hidden="true" />
-                        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500">
+                        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-2000">
                           Project Case // 0{index + 1}
                         </span>
                         
@@ -159,11 +147,11 @@ const FeaturedProjects = () => {
                         )}
                       </div>
 
-                      <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-cyan-400 break-words">
+                      <h3 className="mt-3 sm:mt-4 text-xl sm:text-2xl font-bold tracking-tight text-white/90 transition-colors group-hover:text-cyan-400 break-words">
                         {project.projectName}
                       </h3>
 
-                      <p className="mt-2 sm:mt-3 text-sm leading-relaxed text-zinc-400 line-clamp-2 font-light">
+                      <p className="mt-2 sm:mt-3 text-sm leading-relaxed text-zinc-200 line-clamp-2 font-light">
                         {project.shortDescription}
                       </p>
                     </div>

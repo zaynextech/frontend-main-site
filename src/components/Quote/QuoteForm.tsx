@@ -119,7 +119,7 @@ const QuoteForm = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden border-t border-cyan-500/10 bg-[#030303]/10 px-4 py-10 text-white antialiased sm:px-6 lg:px-10 lg:py-24">
+    <section className="relative min-h-screen overflow-hidden border-t border-cyan-500/10 bg-[#030303]/5 px-4 py-10 text-white antialiased sm:px-6 lg:px-10 lg:py-24">
       {/* BACKGROUND CYBER GRID (MATCHED TO FOOTER) */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
     

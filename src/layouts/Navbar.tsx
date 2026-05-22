@@ -1,11 +1,10 @@
 "use client";
 
-import { NavLink, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
 import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const navLinks = [
@@ -34,18 +33,18 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] w-full border-b border-white/5 bg-[#030303]/80 backdrop-blur-xl selection:bg-cyan-500/30">
-      
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+      {/* FIXED INSET POSITIONING KEEPS IT MOUNTED AT THE TOP AT ALL TIMES */}
+      <header className="fixed inset-x-0 top-0 md:top-6 z-[100] w-full px-4 sm:px-6 lg:px-10 transition-all duration-300">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between md:h-12">
           
-          {/* Logo Section */}
+          {/* Logo Section - Raw & background-free */}
           <div className="flex items-center shrink-0">
             <Logo />
           </div>
 
-          {/* Desktop Navigation - Enhanced Hover Logic */}
+          {/* Desktop Links - Isolated rounded floating background capsule */}
           <nav 
-            className="hidden items-center gap-2 md:flex"
+            className="hidden items-center gap-1 md:flex bg-[#030303]/80 border border-white/20 backdrop-blur-xl px-2 py-1.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] selection:bg-cyan-500/30"
             onMouseLeave={() => setHoveredPath(null)}
             aria-label="Main Desktop Directory"
           >
@@ -56,8 +55,8 @@ const Navbar = () => {
                 onMouseEnter={() => setHoveredPath(link.path)}
                 className={({ isActive }) =>
                   cn(
-                    "relative px-4 py-2 text-sm font-medium transition-colors duration-300 antialiased",
-                    isActive ? "text-cyan-500 rounded-full border-[2px] border-cyan-500" : "text-zinc-100 hover:text-zinc-50"
+                    "relative px-4 py-1.5 text-sm font-medium transition-colors duration-300 antialiased rounded-full",
+                    isActive ? "text-cyan-400" : "text-zinc-300 hover:text-white"
                   )
                 }
               >
@@ -70,21 +69,21 @@ const Navbar = () => {
                       {hoveredPath === link.path && (
                         <motion.span
                           layoutId="nav-hover"
-                          className="absolute inset-0 z-0 rounded-full border-[2px] border-zinc-300"
+                          className="absolute inset-0 z-0 rounded-full bg-white/[0.04] border border-white/5"
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                          transition={{ type: "spring", bounce: 0, duration: 0.3 }}
                         />
                       )}
                     </AnimatePresence>
 
-                    {/* Active Indicator - Premium Underline */}
+                    {/* Active Pill Accent Border Line */}
                     {isActive && (
                       <motion.span
-                        layoutId="nav-indicator"
-                        className="absolute bottom-0 left-0 right-0 h-0"
-                        transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+                        layoutId="nav-active-border"
+                        className="absolute inset-0 z-0 rounded-full border border-cyan-500/30 bg-cyan-500/[0.03] shadow-[0_0_15px_rgba(6,182,212,0.1)]"
+                        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
                       />
                     )}
                   </>
@@ -93,31 +92,15 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Actions & Mobile Toggle */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            <Link 
-              to="https://client.zaynex.tech/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group hidden items-center gap-1 text-sm font-medium text-zinc-300 transition-colors hover:text-white lg:flex whitespace-nowrap"
-            >
-              Client portal
-              <ArrowUpRight size={14} className="opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
-            </Link>
-            
-            <Link to="/quote" className="hidden sm:block shrink-0">
-              <Button className="group relative h-10 rounded-full bg-white px-6 text-sm font-bold text-black transition-all active:scale-95 hover:bg-zinc-200">
-                Request quote
-              </Button>
-            </Link>
-
+          {/* Actions & Mobile Toggle Area */}
+          <div className="flex items-center gap-4 md:w-[78px] md:justify-end"> 
             {/* Mobile Menu Toggle button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={isOpen ? "Close configuration menu" : "Open navigational options menu"}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-colors hover:bg-white/5 hover:text-white md:hidden shrink-0"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#030303]/80 backdrop-blur-md text-zinc-400 transition-colors hover:bg-white/5 hover:text-white md:hidden shrink-0"
             >
               {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
             </button>
@@ -139,7 +122,6 @@ const Navbar = () => {
               aria-hidden="true"
             />
             
-
             {/* Mobile Menu Content Panel Side-Drawer */}
             <motion.div
               id="mobile-navigation-drawer"
@@ -160,7 +142,7 @@ const Navbar = () => {
                       cn(
                         "flex w-full items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200",
                         isActive 
-                          ? "bg-white/5 text-cyan-400 border border-cyan-500/20" 
+                          ? "bg-cyan-500/[0.04] text-cyan-400 border border-cyan-500/20" 
                           : "text-zinc-300 hover:bg-white/[0.02] hover:text-white"
                       )
                     }
@@ -170,27 +152,7 @@ const Navbar = () => {
                 ))}
               </nav>
 
-              {/* Bottom Mobile Action buttons */}
-              <div className="mt-auto space-y-4 border-t border-white/5 pt-6 mb-20">
-                <Link 
-                  to="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-1 w-full py-2.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
-                >
-                  Client portal
-                  <ArrowUpRight size={14} className="shrink-0" />
-                </Link>
-
-                <Link 
-                  to="/quote"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full"
-                >
-                  <Button className="w-full h-11 rounded-full bg-white text-sm font-bold text-black hover:bg-zinc-200 transition-colors active:scale-[0.98]">
-                    Request quote
-                  </Button>
-                </Link>
-              </div>
+              <div className="mt-auto space-y-4 border-t border-white/5 pt-6" />
             </motion.div>
           </>
         )}

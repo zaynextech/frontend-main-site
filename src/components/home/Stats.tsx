@@ -57,7 +57,7 @@ const Stats = () => {
 
                 {/* Value */}
                 <div className="flex items-start justify-between">
-                  <span className="text-3xl font-bold tracking-tight text-white">
+                  <span className="text-1xl font-bold tracking-tight text-white">
                     {stat.value}
                   </span>
 
@@ -70,7 +70,7 @@ const Stats = () => {
                 </span>
 
                 {/* Subtext */}
-                <span className="text-[11px] text-zinc-500 group-hover:text-zinc-400">
+                <span className="text-[11px] text-zinc-300 group-hover:text-zinc-400">
                   {stat.sub}
                 </span>
               </div>
