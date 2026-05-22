@@ -7,31 +7,31 @@ export const inputFields = [
 
   {
     name: "companyName",
-    placeholder: "Company / Organization",
+    placeholder: "Company / Brand Name",
     type: "text",
   },
 
   {
     name: "workEmail",
-    placeholder: "Work Email",
+    placeholder: "Business Email",
     type: "email",
   },
 
   {
     name: "phoneNumber",
-    placeholder: "Phone Number",
+    placeholder: "Phone Number / WhatsApp",
     type: "tel",
   },
 
   {
     name: "country",
-    placeholder: "Country",
+    placeholder: "Country / Region",
     type: "text",
   },
 
   {
     name: "companyWebsite",
-    placeholder: "Company Website",
+    placeholder: "Existing Website (Optional)",
     type: "url",
   },
 
@@ -43,7 +43,7 @@ export const inputFields = [
 
   {
     name: "estimatedUsers",
-    placeholder: "Estimated Users",
+    placeholder: "Expected Monthly Users",
     type: "text",
   },
 
@@ -55,7 +55,7 @@ export const inputFields = [
 
   {
     name: "attachmentUrl",
-    placeholder: "Attachment URL",
+    placeholder: "Figma / Docs / Reference URL",
     type: "url",
     colSpan: "col-span-2",
   },
@@ -66,15 +66,26 @@ export const selectFields = [
     name: "projectType",
     placeholder: "Project Type",
     options: [
+      "Business Website",
+      "Portfolio Website",
+      "Landing Page",
+      "E-Commerce Website",
+      "Custom Web Application",
       "SaaS Platform",
-      "School Management System",
-      "Hospital Management System",
-      "ERP System",
-      "Mobile App",
-      "Booking Platform",
-      "POS System",
-      "AI Automation",
-      "Custom Software",
+      "AI-Powered Web App",
+      "Dashboard & Admin Panel",
+      "Marketplace Platform",
+      "Booking & Reservation System",
+      "Learning Management System (LMS)",
+      "CRM Platform",
+      "Job Portal",
+      "Social Networking Platform",
+      "Streaming Platform",
+      "Real Estate Platform",
+      "Healthcare Platform",
+      "Travel & Tourism Website",
+      "Food Delivery Platform",
+      "Finance & Banking Platform",
     ],
   },
 
@@ -82,11 +93,12 @@ export const selectFields = [
     name: "budgetRange",
     placeholder: "Estimated Budget",
     options: [
-      "$100 - $500",
-      "$500 - $1,000",
-      "$1,000 - $5,000",
-      "$5,000 - $20,000",
-      "$20,000+",
+      "$300 - $1,000",
+      "$1,000 - $3,000",
+      "$3,000 - $5,000",
+      "$5,000 - $10,000",
+      "$10,000 - $25,000",
+      "$25,000+",
       "Need Consultation",
     ],
   },
@@ -96,20 +108,24 @@ export const selectFields = [
     placeholder: "Project Timeline",
     options: [
       "ASAP",
-      "1 Month",
-      "2 - 3 Months",
-      "Flexible",
+      "1 - 2 Weeks",
+      "2 - 4 Weeks",
+      "1 - 2 Months",
+      "2 - 4 Months",
+      "Flexible Timeline",
     ],
   },
 
   {
     name: "projectStatus",
-    placeholder: "Project Status",
+    placeholder: "Current Project Status",
     options: [
-      "Ready to start",
-      "Comparing agencies",
-      "Researching options",
-      "Need consultation first",
+      "Ready to Start",
+      "Planning & Research Phase",
+      "Comparing Agencies",
+      "Need Consultation First",
+      "Already Have Design/UI",
+      "Need Complete Development",
     ],
   },
 ];
@@ -118,7 +134,7 @@ export const textareaFields = [
   {
     name: "projectDescription",
     placeholder:
-      "Describe your project requirements...",
+      "Describe your project goals, functionality, target audience, and overall requirements...",
     className:
       "col-span-2 min-h-[180px]",
   },
@@ -126,7 +142,7 @@ export const textareaFields = [
   {
     name: "requiredFeatures",
     placeholder:
-      "Required Features (comma separated)",
+      "Required Features (Authentication, Payments, Dashboard, API, AI Features, etc.)",
     className:
       "col-span-2 min-h-[120px]",
   },
@@ -135,11 +151,11 @@ export const textareaFields = [
 export const checkboxFields = [
   {
     name: "ndaRequired",
-    label: "NDA Required",
+    label: "NDA / Confidentiality Agreement Required",
   },
 
   {
     name: "ongoingSupport",
-    label: "Ongoing Support Needed",
+    label: "Need Ongoing Maintenance & Support",
   },
 ];

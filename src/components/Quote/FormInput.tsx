@@ -32,7 +32,7 @@ const FormInput = ({
       {/* LABEL */}
       <label
         htmlFor={name}
-        className="text-[10px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1 transition-colors group-focus-within:text-cyan-400"
+        className="text-[15px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1 transition-colors group-focus-within:text-cyan-400"
       >
         {placeholder}
       </label>
@@ -53,7 +53,10 @@ const FormInput = ({
             px-4 py-3.5
             text-base md:text-sm
             text-white
-            placeholder:text-zinc-400
+            
+            /* REDUCED PLACEHOLDER OPACITY */
+            placeholder:text-zinc-600
+            
             bg-black/30
             border
             backdrop-blur-md
@@ -61,6 +64,12 @@ const FormInput = ({
             transition-all duration-300
 
             sm:py-4
+
+           /* AUTOFILL OVERRIDES */
+            autofill:bg-transparent
+            [&:-webkit-autofill]:bg-transparent
+            [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]
+            [&:-webkit-autofill]:[-webkit-text-fill-color:white]
 
             ${
               error

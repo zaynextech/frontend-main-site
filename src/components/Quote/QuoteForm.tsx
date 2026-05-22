@@ -119,7 +119,7 @@ const QuoteForm = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden border-t border-cyan-500/10 bg-[#030303] px-4 py-10 text-white antialiased sm:px-6 lg:px-10 lg:py-24">
+    <section className="relative min-h-screen overflow-hidden border-t border-cyan-500/10 bg-[#030303]/10 px-4 py-10 text-white antialiased sm:px-6 lg:px-10 lg:py-24">
       {/* BACKGROUND CYBER GRID (MATCHED TO FOOTER) */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
     
@@ -132,7 +132,7 @@ const QuoteForm = () => {
           <h1 className="mt-1 text-2xl font-extrabold leading-tight tracking-tighter sm:text-5xl sm:leading-[0.9]">
             Architect Your
             <br />
-            <span className="bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-b from-white/50 via-white/70 to-white/20 bg-clip-text text-transparent">
               Digital Infrastructure
             </span>
           </h1>
@@ -170,6 +170,7 @@ const QuoteForm = () => {
             {/* COUNTRY */}
             <CountrySelect
               value={form.country}
+              className="col-span-1 md:col-span-2"
               onChange={(value: string) =>
                 setForm((prev) => ({ ...prev, country: value }))
               }
@@ -247,15 +248,15 @@ const QuoteForm = () => {
           </div>
 
     {/* CALL OUT */}
-          <div className="mt-8 rounded-2xl border border-white/10 border-l-cyan-500/30 bg-gradient-to-b from-cyan-500/[0.02] via-transparent to-transparent p-5 sm:p-6 md:mt-16 md:rounded-[2rem] md:p-10">
-            <h3 className="text-xl font-bold tracking-tight text-white/90 sm:text-2xl">
-              Let's Build Something Great
-            </h3>
+        <div className="mt-8 rounded-2xl border border-white/10 border-l-cyan-500/30 bg-gradient-to-b from-cyan-500/[0.02] via-transparent to-transparent p-5 sm:p-6 md:mt-16 md:rounded-[2rem] md:p-10">
+  <h3 className="text-xl font-bold tracking-tight text-white/90 sm:text-2xl">
+    Let’s Build Something Great
+  </h3>
 
-            <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:mt-4 sm:text-base">
-              Our engineering team reviews custom software, SaaS, and AI infrastructure requests. Submit your details below, and we will get back to you with a tailored proposal in less than 12 hours.
-            </p>
-          </div>
+  <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:mt-4 sm:text-base">
+    Submit your project details and our team will review your request and respond with a personalized solution within 12 hours.
+  </p>
+</div>
 
           {/* SUBMIT */}
           <div className="group relative mt-8 md:mt-12">
@@ -263,22 +264,42 @@ const QuoteForm = () => {
             <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 opacity-20 blur-md transition duration-500 group-hover:opacity-40" />
 
             <Button
-              onClick={submitQuote}
-              disabled={loading}
-              className="relative flex h-12 w-full items-center justify-center rounded-full bg-white text-base font-bold text-black shadow-2xl transition-all duration-300 transform active:scale-[0.99] hover:bg-black hover:text-cyan-400 hover:border hover:border-cyan-500/30 sm:h-16 sm:text-lg disabled:opacity-50 disabled:pointer-events-none"
-            >
-              {loading ? (
-                <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5 animate-spin text-current" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  <span>Transmitting Requirements...</span>
-                </div>
-              ) : (
-                "Submit your project requirements"
-              )}
-            </Button>
+  onClick={submitQuote}
+  disabled={loading}
+  className="relative flex min-h-[52px] w-full items-center justify-center rounded-full border border-transparent bg-white px-5 py-3 text-sm font-semibold text-black shadow-2xl transition-all duration-300 active:scale-[0.99] hover:border-cyan-500/30 hover:bg-black hover:text-cyan-400 sm:min-h-[60px] sm:px-6 sm:text-base md:min-h-[64px] md:text-lg disabled:pointer-events-none disabled:opacity-50"
+>
+  {loading ? (
+    <div className="flex items-center gap-2 text-center">
+      <svg
+        className="h-5 w-5 animate-spin text-current"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+
+      <span className="text-xs sm:text-sm md:text-base">
+        Sending Your Request...
+      </span>
+    </div>
+  ) : (
+    <span className="text-center leading-tight">
+      Get Your Free Project Consultation
+    </span>
+  )}
+</Button>
           </div>
         </div>
       </div>

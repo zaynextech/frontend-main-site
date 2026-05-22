@@ -35,6 +35,7 @@ const Navbar = () => {
   return (
     <>
       <header className="sticky top-0 z-[100] w-full border-b border-white/5 bg-[#030303]/80 backdrop-blur-xl selection:bg-cyan-500/30">
+      
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
           
           {/* Logo Section */}

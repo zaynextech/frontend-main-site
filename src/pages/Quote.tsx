@@ -3,11 +3,9 @@ import QuoteForm from "@/components/Quote/QuoteForm";
 const Quote = () => {
   return (
     <div
-      className="relative min-h-screen bg-black overflow-hidden select-none sm:select-auto"
-      
+      className="relative min-h-screen bg-black/10 overflow-hidden select-none sm:select-auto"
       onMouseMove={(e) => {
-        const rect =
-          e.currentTarget.getBoundingClientRect();
+        const rect = e.currentTarget.getBoundingClientRect();
 
         e.currentTarget.style.setProperty(
           "--x",
@@ -19,12 +17,29 @@ const Quote = () => {
           `${e.clientY - rect.top}px`
         );
       }}
-      
     >
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* BACKGROUND GRAPHICS WRAPPER (STANDALONE & ISOLATED) */}
+      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
+        {/* Background Image */}
+        <img
+          src="/images/bg.jpg"
+          alt=""
+          role="presentation"
+          loading="eager"
+          className="h-full w-full object-cover scale-105 opacity-40 blur-[2px]"
+        />
 
-      {/* Form */}
-      <QuoteForm />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-[#030303]/10" />
+      
+        {/* Cyber Grid Pattern */}
+        
+      </div> 
+
+      {/* FORM ELEMENT CONTAINER (ABOVE BACKGROUND & CLICKABLE) */}
+      <div className="relative z-10 w-full h-full">
+        <QuoteForm />
+      </div>
     </div>
   );
 };

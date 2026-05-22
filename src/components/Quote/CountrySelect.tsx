@@ -13,6 +13,7 @@ type CountryOption = {
 
 type Props = {
   value: string;
+  className?: string; // ADDED THIS TO PROP TYPES TO FIX THE TS ERROR
   onChange: (value: string) => void;
 };
 
@@ -26,7 +27,7 @@ const options: CountryOption[] = countries.map((country) => ({
         style={{
           width: '1.2em',
           height: '1.2em',
-          borderRadius: '2px',
+          borderRadius: '3px',
           objectFit: 'cover'
         }}
       />
@@ -39,14 +40,14 @@ const options: CountryOption[] = countries.map((country) => ({
 const customStyles: StylesConfig<CountryOption, false> = {
   control: (base, state) => ({
     ...base,
-    backgroundColor: "rgba(255, 255, 255, 0.03)",
-    backdropFilter: "blur(8px)",
-    borderColor: state.isFocused ? "rgba(6, 182, 212, 0.5)" : "rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backdropFilter: "blur(12px)",
+    borderColor: state.isFocused ? "rgba(6, 182, 212, 0.4)" : "rgba(255, 255, 255, 0.1)",
     borderRadius: "12px",
-    padding: "6px 4px",
-    boxShadow: state.isFocused ? "0 0 0 1px rgba(6, 182, 212, 0.2)" : "none",
+    padding: "5px 4px",
+    boxShadow: state.isFocused ? "0 0 20px rgba(6, 182, 212, 0.12)" : "none",
     "&:hover": {
-      borderColor: "rgba(255, 255, 255, 0.2)",
+      borderColor: state.isFocused ? "rgba(6, 182, 212, 0.4)" : "rgba(255, 255, 255, 0.2)",
     },
     transition: "all 0.3s ease",
   }),
@@ -57,27 +58,44 @@ const customStyles: StylesConfig<CountryOption, false> = {
     borderRadius: "12px",
     marginTop: "8px",
     overflow: "hidden",
-    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.5)",
-    backdropFilter: "blur(12px)",
+    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.7)",
+    backdropFilter: "blur(16px)",
     zIndex: 50,
   }),
   menuList: (base) => ({
     ...base,
     maxHeight: "220px",
     overflowY: "auto",
+    padding: "4px",
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "rgba(255, 255, 255, 0.1)",
+      borderRadius: "10px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "rgba(6, 182, 212, 0.3)",
+    },
   }),
   option: (base, state) => ({
     ...base,
+    borderRadius: "8px",
+    margin: "2px 0",
     backgroundColor: state.isSelected 
-      ? "rgba(6, 182, 212, 0.1)" 
+      ? "rgba(6, 182, 212, 0.12)" 
       : state.isFocused 
-      ? "rgba(255, 255, 255, 0.05)" 
+      ? "rgba(255, 255, 255, 0.04)" 
       : "transparent",
-    color: state.isSelected ? "#22d3ee" : "#a1a1aa",
+    color: state.isSelected ? "#22d3ee" : state.isFocused ? "#ffffff" : "#a1a1aa",
     cursor: "pointer",
     padding: "12px 16px",
+    transition: "all 0.2s ease",
     "&:active": {
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      backgroundColor: "rgba(255, 255, 255, 0.08)",
     },
   }),
   singleValue: (base) => ({
@@ -98,10 +116,10 @@ const customStyles: StylesConfig<CountryOption, false> = {
   }),
   placeholder: (base) => ({
     ...base,
-    color: "#52525b",
+    color: "#fff",
     fontSize: "16px",
     "@media (min-width: 768px)": {
-      fontSize: "14px",
+      fontSize: "20px",
     },
   }),
   indicatorSeparator: () => ({
@@ -110,21 +128,29 @@ const customStyles: StylesConfig<CountryOption, false> = {
   dropdownIndicator: (base) => ({
     ...base,
     color: "#52525b",
+    paddingRight: "12px",
+    transition: "color 0.3s ease",
     "&:hover": {
       color: "#fff",
     },
   }),
 };
 
-const CountrySelect = ({ value, onChange }: Props) => {
+const CountrySelect = ({ value, className, onChange }: Props) => {
   // 3. Properly type the change handler
   const handleSelectChange = (newValue: SingleValue<CountryOption>) => {
     onChange(newValue?.value || "");
   };
 
+  // Safe override to ensure incoming desktop col-spans don't collapse mobile grids
+  const baseClassName = className?.includes("col-span")
+    ? className.replace(/col-span-\d+|col-span-full/, "col-span-1 md:$&")
+    : className;
+
   return (
-    <div className="space-y-2">
-      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500 ml-1">
+    /* INJECTED THE CLASSNAME PROP HERE SO GRID LAYOUT WORKS */
+    <div className={`space-y-2 ${baseClassName || ""}`}>
+      <label className="text-[10px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1">
         Location
       </label>
       <Select<CountryOption, false>
