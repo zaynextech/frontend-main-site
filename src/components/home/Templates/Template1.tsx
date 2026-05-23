@@ -4,20 +4,21 @@ import InteractiveGrid from '@/components/ui/interactive-grid';
 
 export default function Template1() {
   return (
-    <div className="min-h-screen w-full bg-[#030303] text-white flex items-center justify-center p-6 relative font-sans overflow-hidden">
+    /* CHANGED TO 'hidden md:flex' TO CONCEAL ENTIRE CONTEXT ON SMALL SCREEN RATIOS */
+    <div className="hidden md:flex min-h-screen w-full bg-[#030303] text-white items-center justify-center p-6 relative font-sans overflow-hidden">
 
       {/* Background Image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none"
-              style={{
-                backgroundImage: "url('/images/bg.jpg')",
-              }}
-            />
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/bg.jpg')",
+        }}
+      />
 
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-[#030303]/80 pointer-events-none" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-[#030303]/80 pointer-events-none" />
 
-            <InteractiveGrid/>
+      <InteractiveGrid />
       
       {/* Background Decorative Ambient Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none" />
@@ -44,24 +45,22 @@ export default function Template1() {
           <LoopingArrowSVG />
         </div>
 
-         {/* Right Column: Mini Mockup Viewport Container */}
-            <div className="col-span-12 md:col-span-8 flex justify-end items-center relative z-10">
+        {/* Right Column: Mini Mockup Viewport Container */}
+        <div className="col-span-12 md:col-span-8 flex justify-end items-center relative z-10">
 
-              {/* Showcase Wrapper */}
-              <div className="w-full transform scale-75 lg:scale-80 origin-right transition-all duration-700 ease-out hover:-translate-y-1">
-                
-                {/* Blurred Ambient Glow Underlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-pink-500/10 to-amber-300/10 blur-3xl opacity-70 rounded-[32px] pointer-events-none transition-all duration-700 group-hover:opacity-100" />
-                
-                {/* Ultra-Glassy Container */}
-                <div className="relative rounded-[32px] overflow-hidden backdrop-blur-md bg-white/[0.03] p-5 border border-white/10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),_0_0_120px_rgba(6,182,212,0.15)] transition-all duration-700 ">
+          {/* Showcase Wrapper */}
+          <div className="w-full transform scale-75 lg:scale-80 origin-right transition-all duration-700 ease-out hover:-translate-y-1">
+            
+            {/* Blurred Ambient Glow Underlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-pink-500/10 to-amber-300/10 blur-3xl opacity-70 rounded-[32px] pointer-events-none transition-all duration-700 group-hover:opacity-100" />
+            
+            {/* Ultra-Glassy Container */}
+            <div className="relative rounded-[32px] overflow-hidden backdrop-blur-md bg-white/[0.03] p-5 border border-white/10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9),_0_0_120px_rgba(6,182,212,0.15)] transition-all duration-700">
+              <PageShowcase />
+            </div>
 
-                  <PageShowcase />
-
-    </div>
-  </div>
-</div>
-                        
+          </div>
+        </div>
 
       </div>
     </div>
@@ -80,36 +79,26 @@ function LoopingArrowSVG() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        {/* Smooth multi-stop gradient tracing along the reference path flow */}
         <linearGradient id="arrowGradient" x1="100%" y1="50%" x2="0%" y2="50%">
-          <stop offset="0%" stopColor="rgba(34,211,238,0.8)" />    {/* Starts blue/cyan out of the template splash */}
-          <stop offset="40%" stopColor="#fff" />   {/* Loops through a rich violet */}
-          <stop offset="75%" stopColor="rgba(34,211,238,0.8)" />   {/* Transitions to hot pink */}
-          <stop offset="100%" stopColor="rgba(34,211,238,0.8)" />  {/* Finishes amber/gold at the tip */}
+          <stop offset="0%" stopColor="rgba(34,211,238,0.8)" />
+          <stop offset="40%" stopColor="#fff" />
+          <stop offset="75%" stopColor="rgba(34,211,238,0.8)" />
+          <stop offset="100%" stopColor="rgba(34,211,238,0.8)" />
         </linearGradient>
       </defs>
 
-      {/* The Perfected Loop Path:
-        - Starts inside the page thumbnail edge (X: 790, Y: 460)
-        - Swings out and builds the vertical loop drop in the center (X: 630-730 region)
-        - Curvaceously shoots out towards the left text block
-      */}
       <path
-  d="M 790,460 
-     C 740,470 650,420 630,480 
-     C 600,560 740,640 700,500 
-     C 670,400 560,570 280,590"
-  stroke="url(#arrowGradient)"
-  strokeWidth="6"
-  strokeLinecap="round"
-  strokeDasharray="14 10"
-/>
+        d="M 790,460 C 740,470 650,420 630,480 C 600,560 740,640 700,500 C 670,400 560,570 280,590"
+        stroke="url(#arrowGradient)"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeDasharray="14 10"
+      />
 
-{/* Arrowhead perfectly aligned */}
-<polygon
-  points="280,590 312,575 304,607"
-  fill="#fff"
-/>
+      <polygon
+        points="280,590 312,575 304,607"
+        fill="#fff"
+      />
     </svg>
   );
 }

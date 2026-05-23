@@ -1,5 +1,5 @@
 import Hero from "../components/home/Hero";
-import Stats from "../components/home/Stats";
+// import Stats from "../components/home/Stats";
 import ServicesPreview from "../components/home/ServicesPreview";
 import TechStack from "../components/home/TechStack";
 import IndustriesPreview from "../components/home/IndustriesPreview";
@@ -38,7 +38,7 @@ useEffect(() => {
         behavior: "smooth",
       });
     }}
-    className="group fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-500/20 bg-[#081120]/80 text-cyan-300 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]"
+    className="group fixed bottom-8 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-500/90 bg-[#081120]/10 text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white hover:shadow-[0_0_10px_rgba(34,211,238,0.35)]"
     aria-label="Scroll to top"
   >
     <ArrowUp
@@ -54,9 +54,6 @@ useEffect(() => {
    
       <Hero />
       
-      <div className="relative z-10">
-        <Stats />
-      </div>
 
       <PhoneShowcase />
       <ServicesPreview />
@@ -73,6 +70,9 @@ useEffect(() => {
       <TechStack />
       
       <IndustriesPreview />
+    
+        {/* <Stats /> */}
+
       
       
     </main>

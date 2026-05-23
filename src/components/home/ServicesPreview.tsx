@@ -22,7 +22,6 @@ interface ThemeStyles {
   dot: string;
 }
 
-// Fixed theme mapping to bind securely to your application's design tokens
 const themes: Record<ThemeKey, ThemeStyles> = {
   primary: {
     text: "text-cyan-400",
@@ -88,49 +87,40 @@ const services: ServiceItem[] = [
 
 const ServicesPreview = () => {
   return (
-    <section className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-white/5 bg-[#030303] px-4 py-16 antialiased sm:px-6 md:py-24 lg:px-10 lg:py-32">
+    /* Reduced global max-width constraint to keep cards compactly contained */
+    <section className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-12 antialiased sm:px-6 md:py-16 lg:px-8">
       
       {/* Background System */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        {/* Background Image */}
         <img
           src="/images/bg.jpg"
           alt=""
           role="presentation"
           loading="eager"
-          className="h-full w-full object-cover scale-105 opacity-20 blur-[2px]"
+          className="h-full w-full object-cover scale-105 opacity-15 blur-[2px]"
         />
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#030303]/30" />
-
-        {/* Cyan Glow */}
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/20 blur-[140px]" />
-
-        {/* Interactive Grid */}
+        <div className="absolute inset-0 bg-[#030303]/40" />
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[120px]" />
         <InteractiveGrid />
       </div>
 
       {/* Header */}
-      <header className="mb-12 flex flex-col items-center text-center md:mb-20 relative z-10">
-       
-
-        <h2 className="max-w-5xl text-3xl font-extrabold leading-[1.15] tracking-tighter text-white/90 sm:text-5xl md:text-6xl">
+      <header className="mb-10 flex flex-col items-center text-center md:mb-14 relative z-10">
+        <h2 className="max-w-3xl text-2xl font-extrabold leading-[1.2] tracking-tighter text-white/90 sm:text-4xl md:text-5xl">
           Enterprise solutions engineered for{" "}
           <span className="bg-gradient-to-b from-white/90 via-white to-zinc-500 bg-clip-text text-transparent">
             modern businesses
           </span>
         </h2>
 
-        <p className="mt-4 max-w-2xl text-base font-light leading-relaxed text-zinc-300 sm:text-lg md:mt-6">
+        <p className="mt-3 max-w-xl text-xs font-light leading-relaxed text-zinc-400 sm:text-sm md:mt-4">
           Zaynex designs scalable SaaS platforms, enterprise systems,
-          high-performance websites, and modern digital infrastructure for
-          growing companies worldwide.
+          high-performance websites, and modern digital infrastructure.
         </p>
       </header>
 
       {/* Services Grid */}
-      <div className="relative z-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 w-full">
         {services.map((service, i) => {
           const style = themes[service.theme];
           const ServiceIcon = service.icon;
@@ -138,71 +128,70 @@ const ServicesPreview = () => {
           return (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
+              viewport={{ once: true, margin: "-10px" }}
               transition={{
-                delay: i * 0.05,
-                duration: 0.5,
+                delay: i * 0.04,
+                duration: 0.4,
               }}
               style={{ willChange: "transform" }}
               className={
                 service.featured
-                  ? "col-span-1 md:col-span-2 lg:col-span-2"
-                  : "col-span-1"
+                  ? "col-span-1 md:col-span-2 lg:col-span-2 w-full mx-auto"
+                  : "col-span-1 w-full max-w-sm md:max-w-none mx-auto"
               }
             >
-              <article className="h-full">
-                <Card className="group relative flex h-full min-h-[260px] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/5 bg-[#080808]/50 p-6 shadow-2xl backdrop-blur-3xl transition-all duration-500 hover:border-cyan-500/20 hover:bg-[#101010]/60 sm:p-8">
+              <article className="h-full w-full">
+                {/* Reduced standard baseline height from 260px down to 220px to fix bulkiness */}
+                <Card className="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/5 bg-[#080808]/50 p-5 shadow-xl backdrop-blur-3xl transition-all duration-500 hover:border-cyan-500/20 hover:bg-[#101010]/60 sm:p-6 lg:p-7">
                   
                   {/* Cyan Hover Radial Glow */}
-                  <div className="pointer-events-none absolute top-0 left-0 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[80px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute top-0 left-0 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[60px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
                   {/* Animated Grid Scan */}
-                  <div
-                    className={`pointer-events-none absolute inset-0 -translate-y-full bg-gradient-to-b from-transparent ${style.scan} to-transparent opacity-0 transition-all duration-1000 ease-in-out group-hover:translate-y-full group-hover:opacity-100`}
-                  />
+                  <div className={`pointer-events-none absolute inset-0 -translate-y-full bg-gradient-to-b from-transparent ${style.scan} to-transparent opacity-0 transition-all duration-1000 ease-in-out group-hover:translate-y-full group-hover:opacity-100`} />
 
                   {/* Content Elements */}
-                  <div className="relative z-10 flex h-full flex-col justify-between gap-6">
+                  <div className="relative z-10 flex h-full flex-col justify-between gap-4">
                     <div>
                       {/* Top Action Indicators */}
-                      <div className="mb-6 flex items-center justify-between gap-4">
+                      <div className="mb-4 flex items-center justify-between gap-4">
                         {/* Icon Container */}
-                        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-105 sm:h-14 sm:w-14 sm:rounded-2xl ${style.bg} ${style.text}`}>
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-105 ${style.bg} ${style.text}`}>
                           <ServiceIcon
-                            size={24}
+                            size={20}
                             strokeWidth={1.5}
                             aria-hidden="true"
                           />
                         </div>
 
                         {/* Network Status Dot */}
-                        <div className="flex items-center gap-2 select-none">
-                          <span className="text-[9px] uppercase tracking-widest text-zinc-600 transition-colors duration-300 group-hover:text-zinc-400 font-semibold">
+                        <div className="flex items-center gap-1.5 select-none">
+                          <span className="text-[8px] uppercase tracking-widest text-zinc-600 transition-colors duration-300 group-hover:text-zinc-400 font-semibold">
                             Active
                           </span>
-                          <div className={`h-1.5 w-1.5 rounded-full shadow-[0_0_8px_currentColor] ${style.dot}`} />
+                          <div className={`h-1 w-1 rounded-full shadow-[0_0_6px_currentColor] ${style.dot}`} />
                         </div>
                       </div>
 
                       {/* Descriptive Typography */}
-                      <div className="space-y-2.5">
-                        <h3 className={`text-xl font-bold tracking-tight text-white transition-all duration-300 sm:text-2xl ${style.hoverText}`}>
+                      <div className="space-y-1.5">
+                        <h3 className={`text-lg font-bold tracking-tight text-white transition-all duration-300 ${style.hoverText}`}>
                           {service.title}
                         </h3>
-                        <p className="text-sm font-light leading-relaxed text-zinc-400 sm:text-base">
+                        <p className="text-xs font-light leading-relaxed text-zinc-400">
                           {service.desc}
                         </p>
                       </div>
                     </div>
 
                     {/* Meta Technology Tag Tracks */}
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="select-none rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-[10px] font-medium text-zinc-400 transition-all duration-300 group-hover:border-white/10 group-hover:bg-white/10 group-hover:text-zinc-200"
+                          className="select-none rounded-full border border-white/5 bg-white/5 px-2 py-0.5 text-[9px] font-medium text-zinc-400 transition-all duration-300 group-hover:border-white/10 group-hover:bg-white/10 group-hover:text-zinc-200"
                         >
                           {tag}
                         </span>

@@ -17,7 +17,7 @@ const stats = [
   },
 
   { 
-    value: "Responsive", 
+    value: "Adaptive", 
     label: "UI Experience", 
     sub: "Mobile & Desktop Ready", 
     highlight: false 
@@ -30,6 +30,7 @@ const stats = [
     highlight: false 
   },
 ];
+
 const Stats = () => {
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-16 lg:px-10 bg">
@@ -57,7 +58,7 @@ const Stats = () => {
 
                 {/* Value */}
                 <div className="flex items-start justify-between">
-                  <span className="text-1xl font-bold tracking-tight text-white">
+                  <span className="text-[15px] font-bold tracking-tight text-white">
                     {stat.value}
                   </span>
 
