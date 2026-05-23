@@ -19,34 +19,32 @@ interface PortfolioProject {
 }
 
 const Portfolio = () => {
-const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [projects, setProjects] = useState<PortfolioProject[]>([]);
 
-useEffect(() => {
-  let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-  const fetchProjects = async () => {
-    try {
-      const { data } = await api.get("/portfolio");
+    const fetchProjects = async () => {
+      try {
+        const { data } = await api.get("/portfolio");
 
-      if (isMounted) {
-        setProjects(data.projects || []);
+        if (isMounted) {
+          setProjects(data.projects || []);
+        }
+      } catch (error) {
+        console.error("Failed to fetch portfolio:", error);
       }
-    } catch (error) {
-      console.error(
-        "Failed to fetch portfolio:",
-        error
-      );
-    }
-  };
+    };
 
-  fetchProjects();
+    fetchProjects();
 
-  return () => {
-    isMounted = false;
-  };
-}, []);
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-[#030303]/50 px-10 py-5 text-white">
+    <section className="relative overflow-hidden bg-[#030303]/50 px-3 py-8 text-white sm:px-4 lg:px-6">
 
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -54,12 +52,11 @@ useEffect(() => {
         <img
           src="/images/bg.jpg"
           alt="Background"
-          className="h-full w-full scale-105 object-cover opacity-20 blur-[4px]"
+          className="h-full w-full scale-105 object-cover opacity-60 blur-[4px]"
         />
 
-        <div className="absolute inset-0 bg-[#030303]/30" />
+        <div className="absolute inset-0 bg-[#030303]/40" />
 
-        
         <InteractiveGrid />
       </div>
 
@@ -67,99 +64,125 @@ useEffect(() => {
       <div className="relative z-10 mx-auto max-w-7xl">
 
         {/* Heading */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5 }}
-  className="mb-14 text-center"
->
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 text-center md:mb-10"
+        >
 
-  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-cyan-400">
-    Portfolio
-  </span>
+          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-cyan-400">
+            Portfolio
+          </span>
 
- <h1 className="mx-auto mt-4 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-  Featured Projects
-</h1>
+          <h1 className="mx-auto mt-3 max-w-3xl text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
+            Featured Projects
+          </h1>
 
-<p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-zinc-400 sm:text-base">
-  Modern websites and frontend experiences built with clean UI and performance in mind.
-</p>
+          <p className="mx-auto mt-3 max-w-lg text-[11px] leading-relaxed text-zinc-400 sm:text-xs">
+            Modern websites and digital systems built with clean UI and performance in mind.
+          </p>
 
-</motion.div>
+        </motion.div>
 
         {/* Grid */}
-     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6">
-  {projects.map((demo) => (
-    <Card
-      key={demo.id}
-      className="group rounded-[2rem] border-white/5 bg-[#080808] p-0 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5"
-    >
-      {/* Responsive Aspect Ratio Image */}
-      <div
-        className="h-52 sm:h-64 md:h-52 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-        style={{ backgroundImage: `url(${demo.thumbnailImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent opacity-10" />
-      </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
 
-      <div className="p-6 sm:p-8">
-        {/* Rating Badge */}
-        <div className="flex items-center gap-2 mb-4">
-          <Star size={14} className="fill-accent text-accent" />
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-accent/90">
-            {demo.rating} Client Rated
-          </span>
-        </div>
-
-        {/* Title & Category */}
-        <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-primary transition-colors">
-          {demo.projectName}
-        </h3>
-        <p className="text-primary/80 text-[10px] sm:text-xs font-bold uppercase tracking-widest mt-1">
-          {demo.category}
-        </p>
-
-        {/* Description - Clamped for consistency */}
-        <p className="mt-4 text-zinc-400 text-sm leading-relaxed line-clamp-3 font-light">
-          {demo.shortDescription}
-        </p>
-
-        {/* BUTTON SECTION: Grid-based responsiveness */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <a href={`/portfolio/${demo.slug}`} className="w-full">
-            <Button 
-              variant="outline" 
-              className="w-full rounded-xl border-white/10 bg-transparent text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+          {projects.map((demo) => (
+            <Card
+              key={demo.id}
+              className="group overflow-hidden rounded-[1.5rem] border-white/[0.05] bg-[#080808]/60 p-0 transition-all duration-500 hover:border-primary/10 hover:shadow-2xl hover:shadow-primary/5"
             >
-              Details
-            </Button>
-          </a>
 
-          <a href={demo.liveDemoUrl} target="_blank" className="w-full">
-            <Button 
-              className="w-full rounded-xl bg-primary text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-lg shadow-primary/10"
-            >
-              Live Demo
-            </Button>
-          </a>
-
-          {demo.bookingEnabled && (
-            <a href="/quote" className="w-full sm:col-span-2">
-              <Button 
-                variant="outline" 
-                className="w-full rounded-xl border-primary/20 bg-primary/5 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-black transition-all"
+              {/* Image */}
+              <div
+                className="relative h-44 overflow-hidden sm:h-48"
+                style={{
+                  backgroundImage: `url(${demo.thumbnailImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
-                Book This System
-              </Button>
-            </a>
-          )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-80" />
+              </div>
+
+              {/* Content */}
+              <div className="p-4 sm:p-5">
+
+                {/* Rating */}
+                <div className="mb-3 flex items-center gap-2">
+
+                  <Star
+                    size={12}
+                    className="fill-accent text-accent"
+                  />
+
+                  <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-accent/90 sm:text-[10px]">
+                    {demo.rating} Client Rated
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-black tracking-tight text-white/80 transition-colors group-hover:text-primary sm:text-xl">
+                  {demo.projectName}
+                </h3>
+
+                {/* Category */}
+                <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-primary/80 sm:text-[10px]">
+                  {demo.category}
+                </p>
+
+                {/* Description */}
+                <p className="mt-4 line-clamp-2 text-xs font-light leading-relaxed text-zinc-300">
+                  {demo.shortDescription}
+                </p>
+
+                {/* Buttons */}
+                <div className="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+
+                  <a
+                    href={`/portfolio/${demo.slug}`}
+                    className="w-full"
+                  >
+                    <Button
+                      variant="outline"
+                      className="w-full rounded-lg border-white/10 bg-transparent text-[9px] font-bold uppercase tracking-[0.16em] hover:bg-white hover:text-black sm:text-[10px]"
+                    >
+                      Details
+                    </Button>
+                  </a>
+
+                  <a
+                    href={demo.liveDemoUrl}
+                    target="_blank"
+                    className="w-full"
+                  >
+                    <Button
+                      className="w-full rounded-lg bg-primary/90 text-[9px] font-bold uppercase tracking-[0.16em] text-black transition-all hover:bg-white sm:text-[10px]"
+                    >
+                      Live Demo
+                    </Button>
+                  </a>
+
+                  {demo.bookingEnabled && (
+                    <a
+                      href="/quote"
+                      className="w-full sm:col-span-2"
+                    >
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-lg border-primary/20 bg-primary/5 text-[9px] font-bold uppercase tracking-[0.16em] text-primary transition-all hover:bg-primary hover:text-black sm:text-[10px]"
+                      >
+                        Book This System
+                      </Button>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
-      </div>
-    </Card>
-  ))}
-</div>
       </div>
     </section>
   );

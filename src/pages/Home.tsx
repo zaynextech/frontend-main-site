@@ -55,13 +55,13 @@ useEffect(() => {
       <Hero />
       
 
+      <FeaturedProjects />
       <PhoneShowcase />
       <ServicesPreview />
 
       <Template1 />
 
       
-      <FeaturedProjects />
 
       <GlobalPresence />
     

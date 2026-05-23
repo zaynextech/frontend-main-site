@@ -59,7 +59,7 @@ const industries = [
 
 const IndustryEcosystem = () => {
   return (
-    <section className="relative overflow-hidden rounded-[2rem] bg-[#030303]/50 py-16">
+    <section className="relative overflow-hidden rounded-[2rem] bg-[#030303]/50 py-16 px-4 sm:px-6 md:py-24 lg:px-8">
 
       {/* Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
@@ -83,9 +83,9 @@ const IndustryEcosystem = () => {
         {/* Header */}
         <div className="mb-12 sm:mb-14 md:mb-16 text-center">
 
-          <h2 className="mx-auto max-w-4xl text-2xl font-black tracking-tighter text-white sm:text-2xl md:text-4xl lg:text-[44px]">
+          <h2 className="mx-auto max-w-4xl text-2xl font-black tracking-tighter text-white sm:text-2xl md:text-4xl lg:text-[34px]">
             Digital solutions for{" "}
-            <span className="bg-gradient-to-b from-white/80 to-zinc-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-b from-white/80 to-zinc-300 bg-clip-text text-transparent">
               modern businesses.
             </span>
           </h2>
@@ -98,13 +98,13 @@ const IndustryEcosystem = () => {
         {/* SCALE WRAPPER */}
         <div className="flex justify-center overflow-hidden">
 
-          <div className="origin-top scale-[0.48] sm:scale-[0.68] md:scale-[0.74] lg:scale-[0.88] xl:scale-[0.95] transition-transform duration-300">
+          <div className="origin-top scale-[0.36] sm:scale-[0.68] md:scale-[0.74] lg:scale-[0.88] xl:scale-[0.75] transition-transform duration-300">
 
             {/* ORIGINAL DESIGN */}
-            <div className="flex items-center justify-center gap-0 min-w-[1150px]">
+            <div className="flex items-center justify-center gap-0 min-w-[1150px] ">
 
               {/* Core */}
-              <div className="relative z-20 flex flex-col items-center justify-center w-1/4 pl-20 sm:pl-10">
+              <div className="relative z-20 flex flex-col items-center justify-center w-1/4 pl-0 sm:pl-10">
 
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}

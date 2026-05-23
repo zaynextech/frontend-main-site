@@ -88,7 +88,7 @@ const services: ServiceItem[] = [
 const ServicesPreview = () => {
   return (
     /* Reduced global max-width constraint to keep cards compactly contained */
-    <section className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-12 antialiased sm:px-6 md:py-16 lg:px-8">
+    <section className="relative mb-32 mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-12 antialiased sm:px-6 md:py-16 lg:px-8">
       
       {/* Background System */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
@@ -105,19 +105,20 @@ const ServicesPreview = () => {
       </div>
 
       {/* Header */}
-      <header className="mb-10 flex flex-col items-center text-center md:mb-14 relative z-10">
-        <h2 className="max-w-3xl text-2xl font-extrabold leading-[1.2] tracking-tighter text-white/90 sm:text-4xl md:text-5xl">
-          Enterprise solutions engineered for{" "}
-          <span className="bg-gradient-to-b from-white/90 via-white to-zinc-500 bg-clip-text text-transparent">
-            modern businesses
-          </span>
-        </h2>
+<header className="relative z-10 mb-10 flex flex-col items-center text-center md:mb-14">
+  
+  <h2 className="max-w-3xl text-2xl font-extrabold leading-[1.15] tracking-tighter text-white/90 sm:text-4xl md:text-5xl">
+    Digital systems for{" "}
+    <span className="bg-gradient-to-b from-white/90 via-white to-zinc-500 bg-clip-text text-transparent">
+      modern brands
+    </span>
+  </h2>
 
-        <p className="mt-3 max-w-xl text-xs font-light leading-relaxed text-zinc-400 sm:text-sm md:mt-4">
-          Zaynex designs scalable SaaS platforms, enterprise systems,
-          high-performance websites, and modern digital infrastructure.
-        </p>
-      </header>
+  <p className="mt-3 max-w-lg text-xs font-light leading-relaxed text-zinc-400 sm:text-sm md:mt-4">
+    Zaynex builds scalable platforms, websites, and modern business systems.
+  </p>
+
+</header>
 
       {/* Services Grid */}
       <div className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 w-full">

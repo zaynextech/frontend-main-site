@@ -56,11 +56,11 @@ const FeaturedProjects = () => {
           alt=""
           role="presentation"
           loading="eager"
-          className="h-full w-full object-cover scale-105 opacity-40 blur-[2px]"
+          className="h-full w-full object-cover scale-105 opacity-40 blur-[5px]"
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#030303]/60" />
+        <div className="absolute inset-0 bg-[#030303]/30" />
 
         {/* Decorative ambient radial glow */}
         <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-cyan-500/5 blur-[100px] rounded-full" />

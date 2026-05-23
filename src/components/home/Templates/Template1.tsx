@@ -16,7 +16,7 @@ export default function Template1() {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-[#030303]/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#030303]/30 pointer-events-none" />
 
       <InteractiveGrid />
       

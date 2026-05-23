@@ -27,6 +27,24 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
   return (
     <section className={`py-12 md:py-16 ${className || ""}`}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+          {/* Background System */}
+      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
+        {/* Background Image */}
+        <img
+          src="/images/bg.jpg"
+          alt=""
+          role="presentation"
+          loading="eager"
+          className="h-full w-full object-cover scale-105 opacity-40 blur-[5px]"
+        />
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-[#030303]/50" />
+
+        {/* Decorative ambient radial glow */}
+        <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-cyan-500/5 blur-[100px] rounded-full" />
+      </div>
         
         {/* Balanced container layout with constrained vertical padding */}
         <div className="group relative rounded-[2rem] border border-white/5 bg-[#080808]/50 p-6 sm:p-10 lg:p-14 backdrop-blur-3xl shadow-2xl overflow-hidden">

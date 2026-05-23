@@ -17,36 +17,47 @@ const navLinks = [
 
 const Navbar = () => {
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Prevent background scrolling when mobile menu drawer opens
+  // Prevent body scroll
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
+  // Close on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      {/* FIXED INSET POSITIONING KEEPS IT MOUNTED AT THE TOP AT ALL TIMES */}
-      <header className="fixed inset-x-0 top-0 md:top-6 z-[100] w-full px-4 sm:px-6 lg:px-10 transition-all duration-300">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between md:h-12">
-          
-          {/* Logo Section - Raw & background-free */}
-          <div className="flex items-center shrink-0">
+      {/* ================= NAVBAR ================= */}
+      <header className="fixed inset-x-0 top-0 z-[100] w-full px-4 pt-4 sm:px-6 lg:px-10">
+        
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between rounded-2xl border border-white/[0.05] bg-[#030303]/70 px-4 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+
+          {/* Logo */}
+          <div className="shrink-0">
             <Logo />
           </div>
 
-          {/* Desktop Links - Isolated rounded floating background capsule */}
-          <nav 
-            className="hidden items-center gap-1 md:flex bg-[#030303]/80 border border-white/20 backdrop-blur-xl px-2 py-1.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] selection:bg-cyan-500/30"
+          {/* ================= DESKTOP NAV ================= */}
+          <nav
+            className="hidden items-center gap-1 md:flex"
             onMouseLeave={() => setHoveredPath(null)}
-            aria-label="Main Desktop Directory"
           >
             {navLinks.map((link) => (
               <NavLink
@@ -55,35 +66,47 @@ const Navbar = () => {
                 onMouseEnter={() => setHoveredPath(link.path)}
                 className={({ isActive }) =>
                   cn(
-                    "relative px-4 py-1.5 text-sm font-medium transition-colors duration-300 antialiased rounded-full",
-                    isActive ? "text-cyan-400" : "text-zinc-300 hover:text-white"
+                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300",
+                    isActive
+                      ? "text-cyan-400"
+                      : "text-zinc-400 hover:text-white"
                   )
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <span className="relative z-10">{link.name}</span>
-                    
-                    {/* Hover Pill Background */}
+                    <span className="relative z-10">
+                      {link.name}
+                    </span>
+
+                    {/* Hover */}
                     <AnimatePresence>
                       {hoveredPath === link.path && (
                         <motion.span
                           layoutId="nav-hover"
-                          className="absolute inset-0 z-0 rounded-full bg-white/[0.04] border border-white/5"
-                          initial={{ opacity: 0, scale: 0.95 }}
+                          className="absolute inset-0 rounded-full bg-white/[0.04]"
+                          initial={{ opacity: 0, scale: 0.96 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+                          exit={{ opacity: 0, scale: 0.96 }}
+                          transition={{
+                            type: "spring",
+                            duration: 0.3,
+                            bounce: 0,
+                          }}
                         />
                       )}
                     </AnimatePresence>
 
-                    {/* Active Pill Accent Border Line */}
+                    {/* Active */}
                     {isActive && (
                       <motion.span
-                        layoutId="nav-active-border"
-                        className="absolute inset-0 z-0 rounded-full border border-cyan-500/30 bg-cyan-500/[0.03] shadow-[0_0_15px_rgba(6,182,212,0.1)]"
-                        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                        layoutId="nav-active"
+                        className="absolute inset-0 rounded-full border border-cyan-500/20 bg-cyan-500/[0.04]"
+                        transition={{
+                          type: "spring",
+                          duration: 0.35,
+                          bounce: 0,
+                        }}
                       />
                     )}
                   </>
@@ -92,47 +115,52 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Actions & Mobile Toggle Area */}
-          <div className="flex items-center gap-4 md:w-[78px] md:justify-end"> 
-            {/* Mobile Menu Toggle button */}
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              aria-expanded={isOpen}
-              aria-controls="mobile-navigation-drawer"
-              aria-label={isOpen ? "Close configuration menu" : "Open navigational options menu"}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#030303]/80 backdrop-blur-md text-zinc-400 transition-colors hover:bg-white/5 hover:text-white md:hidden shrink-0"
-            >
-              {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-            </button>
-          </div>
+          {/* ================= MOBILE BUTTON ================= */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white md:hidden"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={isOpen ? "close" : "menu"}
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X size={18} /> : <Menu size={18} />}
+              </motion.div>
+            </AnimatePresence>
+          </button>
         </div>
       </header>
 
-      {/* Responsive Mobile Drawer Component Stack */}
+      {/* ================= MOBILE MENU ================= */}
       <AnimatePresence>
+
         {isOpen && (
           <>
-            {/* Dark Blur Backdrop Mask overlay */}
-            <motion.div 
+            {/* Backdrop */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-[#030303]/50 backdrop-blur-md md:hidden"
-              aria-hidden="true"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
             />
-            
-            {/* Mobile Menu Content Panel Side-Drawer */}
+
+            {/* Drawer */}
             <motion.div
-              id="mobile-navigation-drawer"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="fixed bottom-0 right-0 top-16 z-50 flex h-[calc(100vh-4rem)] w-full max-w-[280px] flex-col border-l border-white/5 bg-[#030303] p-6 shadow-2xl md:hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="fixed inset-x-4 top-[76px] z-50 overflow-hidden rounded-2xl border border-white/[0.05] bg-[#050505]/95 p-3 shadow-2xl backdrop-blur-2xl md:hidden"
             >
-              {/* Navigation Link Lists */}
-              <nav className="flex flex-col gap-1 flex-1" aria-label="Mobile Navigation Context Links">
+              <nav className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <NavLink
                     key={link.path}
@@ -140,10 +168,10 @@ const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className={({ isActive }) =>
                       cn(
-                        "flex w-full items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200",
-                        isActive 
-                          ? "bg-cyan-500/[0.04] text-cyan-400 border border-cyan-500/20" 
-                          : "text-zinc-300 hover:bg-white/[0.02] hover:text-white"
+                        "rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+                        isActive
+                          ? "bg-cyan-500/[0.06] text-cyan-400"
+                          : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
                       )
                     }
                   >
@@ -151,8 +179,6 @@ const Navbar = () => {
                   </NavLink>
                 ))}
               </nav>
-
-              <div className="mt-auto space-y-4 border-t border-white/5 pt-6" />
             </motion.div>
           </>
         )}
