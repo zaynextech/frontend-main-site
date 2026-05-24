@@ -13,11 +13,16 @@ import {
 } from "lucide-react";
 
 import InteractiveGrid from "@/components/ui/interactive-grid";
+import SEO from "@/components/SEO";
 
 const ContactPage = () => {
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-16 sm:px-6 lg:px-8">
-      
+      <SEO
+        title="Contact Zaynex"
+        description="Contact Zaynex for professional websites, web apps, SEO, branding, and digital solutions."
+        path="/contact"
+      />
       {/* Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         

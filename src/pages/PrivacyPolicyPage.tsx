@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { ShieldCheck, Lock } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function PrivacyPolicyPage() {
   const sections = useMemo(() => [
@@ -140,6 +141,11 @@ export default function PrivacyPolicyPage() {
           "radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 60%)",
       }}
     >
+      <SEO
+        title="Privacy Policy | Zaynex"
+        description="Read the Zaynex privacy policy and how we protect user and client information."
+        path="/privacy"
+      />
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
 

@@ -1,4 +1,5 @@
 import QuoteForm from "@/components/Quote/QuoteForm";
+import SEO from "@/components/SEO";
 
 const Quote = () => {
   return (
@@ -18,6 +19,12 @@ const Quote = () => {
         );
       }}
     >
+      <SEO
+          title="Request a Project Quote | Zaynex"
+          description="Get a custom quote for your website, web application, LMS, or business system."
+          path="/quote"
+        />
+        
       {/* BACKGROUND GRAPHICS WRAPPER (STANDALONE & ISOLATED) */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
         {/* Background Image */}

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import InteractiveGrid from "@/components/ui/interactive-grid";
 import api from "@/lib/axios";
+import SEO from "@/components/SEO";
 
 interface PortfolioProject {
   id: string;
@@ -45,7 +46,11 @@ const Portfolio = () => {
 
   return (
     <section className="relative overflow-hidden bg-[#030303]/50 px-3 py-8 text-white sm:px-4 lg:px-6">
-
+      <SEO
+        title="Our Portfolio | Zaynex"
+        description="Explore modern websites, dashboards, web applications, and digital systems built by Zaynex."
+        path="/portfolio"
+      />
       {/* Background */}
       <div className="absolute inset-0 z-0">
 

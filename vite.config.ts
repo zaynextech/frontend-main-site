@@ -1,24 +1,58 @@
 import { defineConfig } from "vite";
-
 import react from "@vitejs/plugin-react";
-
 import path from "path";
 
-export default defineConfig({
-  plugins: [react()],
+import sitemap from "vite-plugin-sitemap";
 
-  resolve: {
-    alias: {
-      "@": path.resolve(
-        __dirname,
-        "src"
-      ),
-    },
-  },
+import getDynamicRoutes from "./vite.sitemap";
 
-  optimizeDeps: {
-    exclude: [
-      "react-country-flag",
+export default defineConfig(async () => {
+
+  const dynamicPortfolioRoutes =
+    await getDynamicRoutes();
+
+  return {
+    plugins: [
+      react(),
+
+      sitemap({
+        hostname: "https://www.zaynex.tech",
+
+        dynamicRoutes: [
+          "/",
+          "/about",
+          "/services",
+          "/industries",
+          "/portfolio",
+          "/pricing",
+          "/quote",
+          "/consultation",
+          "/contact",
+          "/privacy",
+          "/terms",
+          "/agreement",
+          "/refund-policy",
+          "/demo1",
+
+          // AUTO PORTFOLIO ROUTES
+          ...dynamicPortfolioRoutes,
+        ],
+      }),
     ],
-  },
+
+    resolve: {
+      alias: {
+        "@": path.resolve(
+          __dirname,
+          "src"
+        ),
+      },
+    },
+
+    optimizeDeps: {
+      exclude: [
+        "react-country-flag",
+      ],
+    },
+  };
 });

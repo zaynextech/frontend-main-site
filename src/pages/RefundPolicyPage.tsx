@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { BadgeDollarSign, AlertTriangle } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function RefundPolicyPage() {
   const sections = useMemo(() => [
@@ -88,6 +89,12 @@ export default function RefundPolicyPage() {
           "radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 60%)",
       }}
     >
+
+      <SEO
+          title="Refund Policy | Zaynex"
+          description="Read the Zaynex refund and cancellation policy."
+          path="/refund-policy"
+        />
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zaynex.tech/sitemap.xml
+Sitemap: https://www.zaynex.tech/sitemap.xml

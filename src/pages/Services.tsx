@@ -1,12 +1,19 @@
 "use client";
+import SEO from "@/components/SEO";
 import InteractiveGrid from "@/components/ui/interactive-grid";
 import { motion } from "framer-motion";
 import { ArrowRight, Construction, Sparkles } from "lucide-react";
 
 const Services = () => {
   return (
+
+    
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-20 sm:px-6 lg:px-8">
-  
+      <SEO
+      title="Professional Web Development Services | Zaynex"
+      description="Modern websites, web applications, LMS platforms, SEO, and business systems."
+      path="/services"
+    />
   {/* Background */}
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
     

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { Shield } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function PolicyPage() {
   const sections = useMemo(() => [
@@ -177,6 +178,11 @@ export default function PolicyPage() {
           "radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 60%)",
       }}
     >
+      <SEO
+        title="Terms & Conditions | Zaynex"
+        description="Read the terms and conditions for using Zaynex services and platforms."
+        path="/terms"
+      />
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
 

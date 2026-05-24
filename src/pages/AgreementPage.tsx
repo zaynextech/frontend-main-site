@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { FileText, CheckCircle2 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function AgreementPage() {
   const sections = useMemo(() => [
@@ -158,6 +159,11 @@ export default function AgreementPage() {
           "radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 60%)",
       }}
     >
+      <SEO
+        title="Service Agreement | Zaynex"
+        description="Official Zaynex client agreement and service policies."
+        path="/agreement"
+      />
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
 

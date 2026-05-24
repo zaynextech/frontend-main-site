@@ -6,6 +6,7 @@ import InteractiveGrid from "@/components/ui/interactive-grid";
 import TechLogo from "@/components/ui/tech-logo";
 import FeatureBadge from "@/components/ui/feature-badge";
 import api from "@/lib/axios";
+import SEO from "@/components/SEO";
 
 interface Project {
   projectName: string;
@@ -93,7 +94,12 @@ useEffect(() => {
 
   return (
   <main className="relative min-h-screen bg-[#030303] pt-24 pb-32 selection:bg-cyan-500/30 selection:text-cyan-100">
-
+   <SEO
+      title={`${project.projectName} | Zaynex`}
+      description={project.longDescription}
+      path={`/portfolio/${slug}`}
+      image={project.thumbnailImage}
+    />
     <InteractiveGrid />
 
     <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-10">
@@ -122,14 +128,15 @@ useEffect(() => {
           </h1>
         </header>
 
-        {/* Main Hero Image */}
-        <div className="mb-16 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
-          <img 
-            src={project.thumbnailImage} 
-            alt={project.projectName} 
-            className="h-full w-full object-cover"
-          />
-        </div>
+      {/* Main Hero Image */}
+          <div className="mb-16 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+            <img
+              src={project.thumbnailImage}
+              alt={`${project.projectName} by Zaynex`}
+              loading="eager"
+              className="h-full w-full object-cover"
+            />
+          </div>
 
         {/* 
           The Sticky Sidebar Layout: 
@@ -160,21 +167,42 @@ useEffect(() => {
               </ul>
             </section>
 
-            <section className="mt-16 space-y-6">
+           <section className="mt-16 space-y-6">
               <h2 className="text-2xl font-medium tracking-tight text-zinc-100 mb-6">
                 Interface Previews
               </h2>
-              {/* Image Grid: 1 large on top, 2 smaller side-by-side below */}
+
+              {/* Large Preview */}
               <div className="aspect-[16/9] overflow-hidden rounded-xl border border-white/10 bg-zinc-900">
-                <img src={project.showcaseImage1} className="h-full w-full object-cover" alt="Showcase 1" />
+                <img
+                  src={project.showcaseImage1}
+                  alt={`${project.projectName} showcase preview 1`}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
               </div>
+
+              {/* Small Previews */}
               <div className="grid grid-cols-2 gap-6">
+
                 <div className="aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-zinc-900">
-                  <img src={project.showcaseImage2} className="h-full w-full object-cover" alt="Showcase 2" />
+                  <img
+                    src={project.showcaseImage2}
+                    alt={`${project.projectName} showcase preview 2`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
+
                 <div className="aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-zinc-900">
-                  <img src={project.showcaseImage3} className="h-full w-full object-cover" alt="Showcase 3" />
+                  <img
+                    src={project.showcaseImage3}
+                    alt={`${project.projectName} showcase preview 3`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
+
               </div>
             </section>
           </div>
