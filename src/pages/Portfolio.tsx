@@ -205,10 +205,17 @@ const Portfolio = () => {
 
                         {/* Interactive Buttons Layout */}
                         <div className="mt-3 sm:mt-6 flex flex-col sm:flex-row sm:items-center justify-between border-t border-zinc-100 pt-2 sm:pt-4 gap-2">
-                          <a href={`/portfolio/${demo.slug}`} className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-zinc-900 hover:text-cyan-500 transition-colors flex items-center gap-0.5 group/link">
-                            <span>Case study</span>
-                            <ArrowUpRight size={10} className="stroke-[2.5] sm:w-3 sm:h-3" />
-                          </a>
+                          <a 
+                        href={`/portfolio/${demo.slug}`} 
+                        className="group/link inline-flex items-center gap-2 rounded-none border border-[#030303] bg-white px-3 py-1.5 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-[#030303] transition-all duration-150 shadow-[2px_2px_0px_rgba(3,3,3,1)] hover:shadow-[1px_1px_0px_rgba(3,3,3,1)] hover:translate-x-[1px] hover:translate-y-[1px] select-none "
+                      >
+                        <span className="text-cyan-600 font-black transition-colors">//</span>
+                        <span>Case study</span>
+                        <ArrowUpRight 
+                          size={11} 
+                          className="stroke-[3] transition-transform duration-150 ease-out group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 shrink-0 text-zinc-400 group-hover/link:text-[#030303]" 
+                        />
+                      </a>
 
                           <a href={demo.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                             <Button className="h-7 sm:h-8 w-full sm:w-auto rounded-none border-2 border-[#030303] bg-[#030303] text-white hover:bg-white hover:text-[#030303] hover:border-[#030303] text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-colors duration-200 px-2 sm:px-4 shadow-none">
