@@ -5,7 +5,6 @@ import Select, { StylesConfig, SingleValue } from "react-select";
 import ReactCountryFlag from "react-country-flag";
 import { countries } from "../../constants/countries";
 
-// 1. Define the Option structure
 type CountryOption = {
   value: string;
   label: React.JSX.Element;
@@ -13,145 +12,134 @@ type CountryOption = {
 
 type Props = {
   value: string;
-  className?: string; // ADDED THIS TO PROP TYPES TO FIX THE TS ERROR
+  className?: string;
   onChange: (value: string) => void;
 };
 
 const options: CountryOption[] = countries.map((country) => ({
   value: country.name,
   label: (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2.5">
       <ReactCountryFlag
         countryCode={country.code}
         svg
         style={{
-          width: '1.2em',
-          height: '1.2em',
-          borderRadius: '3px',
+          width: '1.1em',
+          height: '1.1em',
+          borderRadius: '1px',
           objectFit: 'cover'
         }}
       />
-      <span className="font-medium text-base md:text-sm">{country.name}</span>
+      <span className="font-bold text-xs uppercase tracking-wider">{country.name}</span>
     </div>
   ),
 }));
 
-// 2. Pass the Option type to StylesConfig
 const customStyles: StylesConfig<CountryOption, false> = {
   control: (base, state) => ({
     ...base,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
-    backdropFilter: "blur(12px)",
-    borderColor: state.isFocused ? "rgba(6, 182, 212, 0.4)" : "rgba(255, 255, 255, 0.1)",
-    borderRadius: "12px",
-    padding: "5px 4px",
-    boxShadow: state.isFocused ? "0 0 20px rgba(6, 182, 212, 0.12)" : "none",
+    backgroundColor: "#FFFFFF",
+    borderColor: "#030303",
+    borderWidth: "2px",
+    borderRadius: "0px",
+    padding: "4px 8px",
+    boxShadow: state.isFocused ? "2px 2px 0px rgba(3,3,3,1)" : "none",
     "&:hover": {
-      borderColor: state.isFocused ? "rgba(6, 182, 212, 0.4)" : "rgba(255, 255, 255, 0.2)",
+      borderColor: "#030303",
     },
-    transition: "all 0.3s ease",
+    transition: "all 0.15s ease",
   }),
   menu: (base) => ({
     ...base,
-    backgroundColor: "#0a0a0a",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-    borderRadius: "12px",
-    marginTop: "8px",
+    backgroundColor: "#FFFFFF",
+    border: "2px solid #030303",
+    borderRadius: "0px",
+    marginTop: "2px",
     overflow: "hidden",
-    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.7)",
-    backdropFilter: "blur(16px)",
+    boxShadow: "4px 4px 0px rgba(3,3,3,1)",
     zIndex: 50,
   }),
   menuList: (base) => ({
     ...base,
-    maxHeight: "220px",
+    maxHeight: "200px",
     overflowY: "auto",
-    padding: "4px",
+    padding: "0px",
     "&::-webkit-scrollbar": {
-      width: "6px",
+      width: "5px",
     },
     "&::-webkit-scrollbar-track": {
-      background: "transparent",
+      background: "#FAFAFA",
     },
     "&::-webkit-scrollbar-thumb": {
-      background: "rgba(255, 255, 255, 0.1)",
-      borderRadius: "10px",
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "rgba(6, 182, 212, 0.3)",
+      background: "#030303",
     },
   }),
   option: (base, state) => ({
     ...base,
-    borderRadius: "8px",
-    margin: "2px 0",
     backgroundColor: state.isSelected 
-      ? "rgba(6, 182, 212, 0.12)" 
+      ? "#030303" 
       : state.isFocused 
-      ? "rgba(255, 255, 255, 0.04)" 
+      ? "#FAFAFA" 
       : "transparent",
-    color: state.isSelected ? "#22d3ee" : state.isFocused ? "#ffffff" : "#a1a1aa",
+    color: state.isSelected ? "#FFFFFF" : "#030303",
     cursor: "pointer",
-    padding: "12px 16px",
-    transition: "all 0.2s ease",
+    padding: "10px 12px",
+    transition: "all 0.1s ease",
     "&:active": {
-      backgroundColor: "rgba(255, 255, 255, 0.08)",
+      backgroundColor: "#030303",
+      color: "#FFFFFF",
     },
   }),
   singleValue: (base) => ({
     ...base,
-    color: "#fff",
-    fontSize: "16px",
-    "@media (min-width: 768px)": {
-      fontSize: "14px",
-    },
+    color: "#030303",
+    fontSize: "12px",
+    fontWeight: "700",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
   }),
   input: (base) => ({
     ...base,
-    color: "#fff",
-    fontSize: "16px",
-    "@media (min-width: 768px)": {
-      fontSize: "14px",
-    },
+    color: "#030303",
+    fontSize: "12px",
+    fontWeight: "700",
   }),
   placeholder: (base) => ({
     ...base,
-    color: "#fff",
-    fontSize: "16px",
-    "@media (min-width: 768px)": {
-      fontSize: "20px",
-    },
+    color: "#a1a1aa",
+    fontSize: "12px",
+    fontWeight: "700",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
   }),
   indicatorSeparator: () => ({
     display: "none",
   }),
-  dropdownIndicator: (base) => ({
+  dropdownIndicator: (base, state) => ({
     ...base,
-    color: "#52525b",
-    paddingRight: "12px",
-    transition: "color 0.3s ease",
+    color: "#030303",
+    paddingRight: "4px",
+    transition: "transform 0.2s ease",
+    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "none",
     "&:hover": {
-      color: "#fff",
+      color: "#030303",
     },
   }),
 };
 
 const CountrySelect = ({ value, className, onChange }: Props) => {
-  // 3. Properly type the change handler
   const handleSelectChange = (newValue: SingleValue<CountryOption>) => {
     onChange(newValue?.value || "");
   };
 
-  // Safe override to ensure incoming desktop col-spans don't collapse mobile grids
   const baseClassName = className?.includes("col-span")
     ? className.replace(/col-span-\d+|col-span-full/, "col-span-1 md:$&")
     : className;
 
   return (
-    /* INJECTED THE CLASSNAME PROP HERE SO GRID LAYOUT WORKS */
-    <div className={`space-y-2 ${baseClassName || ""}`}>
-      <label className="text-[10px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1">
-        Location
+    <div className={`space-y-1.5 text-left ${baseClassName || ""}`}>
+      <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#030303] block pl-0.5">
+        // Location Selector
       </label>
       <Select<CountryOption, false>
         options={options}

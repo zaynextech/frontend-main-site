@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 type Props = {
@@ -31,71 +33,69 @@ const FormSelect = ({
     : className;
 
   return (
-    <div className={`relative flex flex-col gap-2 ${baseClassName || ""}`}>
+    <div className={`relative flex flex-col gap-1.5 text-left ${baseClassName || ""}`}>
 
-      {/* LABEL */}
-      <label className="text-[10px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1">
-        {placeholder}
+      {/* ─── HI-CONTRAST METADATA LABEL ─── */}
+      <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#030303] ml-0.5 select-none">
+        // {placeholder}
       </label>
 
-      {/* SELECT BOX */}
+      {/* ─── BRUTALIST SELECT BOX SELECTION NODE ─── */}
       <div
         onClick={() => setOpen(!open)}
         className={`
           flex items-center justify-between
           w-full cursor-pointer
-          rounded-xl px-4 py-3.5 sm:py-4
-          text-base md:text-sm text-white
-          bg-black/30 border backdrop-blur-md
-          transition-all duration-300
+          rounded-none border-2 px-4 py-3
+          text-xs font-bold uppercase tracking-wider
+          bg-white transition-all duration-150
           
           ${
             error
-              ? "border-red-500/40 focus:border-red-500"
+              ? "border-red-600 bg-red-50/30 focus:shadow-[2px_2px_0px_rgba(220,38,38,1)]"
               : open 
-              ? "border-cyan-500/40" 
-              : "border-white/10 hover:border-cyan-500/30"
+              ? "border-[#030303] shadow-[2px_2px_0px_rgba(3,3,3,1)]" 
+              : "border-[#030303] hover:bg-zinc-50"
           }
-          
-          ${open ? "shadow-[0_0_20px_rgba(6,182,212,0.12)]" : ""}
         `}
       >
-        <span className={value ? "text-white" : "text-zinc-400"}>
-          {value || placeholder}
+        <span className={value ? "text-[#030303]" : "text-zinc-400 font-normal lowercase"}>
+          {value || `select ${placeholder.toLowerCase()}...`}
         </span>
 
-        <span className="text-zinc-500 text-xs transition-transform duration-300 group-hover:text-white">
+        {/* Rotatable Flat Indicator Toggle Arrow */}
+        <span className={`text-[#030303] text-[9px] font-black transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
           ▼
         </span>
       </div>
 
-      {/* DROPDOWN */}
+      {/* ─── COMPACT EDITORIAL DROPDOWN FRAME ─── */}
       {open && (
-        <div className="absolute top-full left-0 z-50 mt-2 w-full max-h-60 overflow-y-auto rounded-xl border border-white/10 bg-[#0a0a0a] shadow-xl backdrop-blur-xl">
-
+        <div className="absolute top-[102%] left-0 z-50 w-full max-h-52 overflow-y-auto rounded-none border-2 border-[#030303] bg-white shadow-[4px_4px_0px_rgba(3,3,3,1)] animate-in fade-in slide-in-from-top-1 duration-150">
           {options.map((option) => (
             <div
               key={option}
               onClick={() => handleSelect(option)}
               className={`
-                px-4 py-3.5 text-base md:text-sm cursor-pointer
-                transition-all
-                hover:bg-cyan-500/10 hover:text-cyan-300
-                ${value === option ? "bg-cyan-500/10 text-cyan-300" : "text-white"}
+                px-4 py-2.5 text-xs font-bold uppercase tracking-wider cursor-pointer
+                transition-colors duration-100 border-b border-zinc-100 last:border-b-0
+                ${value === option 
+                  ? "bg-[#030303] text-white" 
+                  : "text-[#030303] bg-white hover:bg-[#FAFAFA]"
+                }
               `}
             >
               {option}
             </div>
           ))}
-
         </div>
       )}
 
-      {/* ERROR */}
+      {/* ─── FLAT PITCH BRUTALIST ERROR TRACKER ─── */}
       {error && (
-        <p className="text-[11px] text-red-400 font-medium ml-1 flex items-center gap-1">
+        <p className="text-[10px] text-red-600 font-black uppercase tracking-widest ml-0.5 flex items-center gap-1 animate-in fade-in slide-in-from-top-1 duration-150">
           <span>✕</span>
-          {error}
+          <span>{error}</span>
         </p>
       )}
     </div>

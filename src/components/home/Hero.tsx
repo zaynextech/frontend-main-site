@@ -22,33 +22,12 @@ const Hero = () => {
           alt=""
           role="presentation"
           loading="eager"
-          className="h-full w-full object-cover scale-105 opacity-40 blur-[2px]"
+          className="h-full w-full object-cover scale-105 opacity-60 blur-[2px]"
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#030303]/60" />
-
-        <InteractiveGrid />
-
-        {/* Primary Glow */}
-        <div className="absolute left-1/2 top-1/4 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
-
-        {/* Accent Glow */}
-        <div className="absolute right-[10%] bottom-[10%] h-[250px] w-[250px] sm:h-[400px] sm:w-[400px] rounded-full bg-emerald-500/5 blur-[120px]" />
-
-        {/* Grid Overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.12]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)",
-            backgroundSize: "44px 44px",
-            maskImage:
-              "radial-gradient(ellipse at center, black, transparent 80%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse at center, black, transparent 80%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-[#030303]/30" />
+ 
       </div>
 
      

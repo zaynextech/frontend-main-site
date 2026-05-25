@@ -1,8 +1,11 @@
+"use client";
+
+import React from "react";
+
 type Props = {
   name: string;
   label: string;
   checked: boolean;
-
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -13,7 +16,7 @@ const FormCheckbox = ({
   onChange,
 }: Props) => {
   return (
-    <label className="group flex cursor-pointer items-start sm:items-center gap-3 select-none py-2 sm:py-0">
+    <label className="group flex cursor-pointer items-start sm:items-center gap-2.5 select-none py-1.5 sm:py-0 text-left">
       
       <input
         type="checkbox"
@@ -23,26 +26,26 @@ const FormCheckbox = ({
         className="peer hidden"
       />
 
-      {/* CUSTOM CHECKBOX CONTAINER */}
+      {/* ─── CUSTOM BRUTALIST CHECKBOX CONTAINER ─── */}
       <div
         className={`
-          h-5 w-5 rounded-[6px] border transition-all duration-300 shrink-0 mt-0.5 sm:mt-0
+          h-4 w-4 rounded-none border-2 border-[#030303] transition-all duration-150 shrink-0 mt-0.5 sm:mt-0
           flex items-center justify-center
           ${checked 
-            ? "bg-cyan-500/10 border-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.25)]" 
-            : "border-white/15 bg-white/[0.02] group-hover:border-white/30 group-hover:bg-white/[0.04]"
+            ? "bg-[#030303] shadow-[2px_2px_0px_rgba(34,211,238,0.4)]" 
+            : "bg-white hover:bg-zinc-50"
           }
         `}
       >
-        {/* PREMIUM VECTOR CHECKMARK */}
+        {/* HIGH-CONTRAST PURE VECTOR CHECKMARK */}
         <svg
-          className={`h-3.5 w-3.5 text-cyan-400 transition-all duration-300 ${
-            checked ? "scale-100 opacity-100" : "scale-50 opacity-0"
+          className={`h-3 w-3 transition-all duration-150 ${
+            checked ? "scale-100 opacity-100 text-cyan-400" : "scale-50 opacity-0 text-transparent"
           }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          strokeWidth="3.5"
+          strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -50,8 +53,8 @@ const FormCheckbox = ({
         </svg>
       </div>
 
-      {/* LABEL */}
-      <span className="text-base md:text-sm text-zinc-400 group-hover:text-zinc-200 peer-checked:text-white transition-colors duration-300 leading-snug sm:leading-none">
+      {/* ─── HIGHLegibility BRUTALIST LABEL ─── */}
+      <span className="text-xs font-black uppercase tracking-wider text-zinc-700 group-hover:text-black peer-checked:text-[#030303] transition-colors duration-150 leading-tight sm:leading-none">
         {label}
       </span>
     </label>

@@ -9,10 +9,12 @@ import { useState, useEffect } from "react";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Capabilities", path: "/services" },
+  { name: "Services", path: "/services" },
   { name: "Industries", path: "/industries" },
   { name: "Portfolio", path: "/portfolio" },
-  { name: "Contact", path: "/contact" },
+  { name: "About", path: "/about" },
+  { name: "Get Started", path: "/quote" },
+  
 ];
 
 const Navbar = () => {
@@ -69,7 +71,7 @@ const Navbar = () => {
                     "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300",
                     isActive
                       ? "text-cyan-400"
-                      : "text-zinc-400 hover:text-white"
+                      : "text-zinc-200 hover:text-white"
                   )
                 }
               >
@@ -158,7 +160,7 @@ const Navbar = () => {
               transition={{
                 duration: 0.25,
               }}
-              className="fixed inset-x-4 top-[76px] z-50 overflow-hidden rounded-2xl border border-white/[0.05] bg-[#050505]/95 p-3 shadow-2xl backdrop-blur-2xl md:hidden"
+              className="fixed inset-x-4 top-[76px] z-50 overflow-hidden rounded-2xl border border-white/[0.05] bg-[#050505]/65 p-3 shadow-2xl backdrop-blur-2xl md:hidden"
             >
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link) => (
@@ -171,7 +173,7 @@ const Navbar = () => {
                         "rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
                         isActive
                           ? "bg-cyan-500/[0.06] text-cyan-400"
-                          : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
+                          : "text-zinc-200 hover:bg-white/[0.04] hover:text-white"
                       )
                     }
                   >

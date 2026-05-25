@@ -27,19 +27,18 @@ const FormInput = ({
     : className;
 
   return (
-    <div className={`group flex flex-col gap-2 ${baseClassName || ""}`}>
+    <div className={`group flex flex-col gap-1.5 text-left ${baseClassName || ""}`}>
 
-      {/* LABEL */}
+      {/* ─── HI-CONTRAST EDITORIAL METADATA LABEL ─── */}
       <label
         htmlFor={name}
-        className="text-[15px] uppercase tracking-[0.25em] font-semibold text-zinc-100 ml-1 transition-colors group-focus-within:text-cyan-400"
+        className="text-[10px] uppercase tracking-[0.2em] font-black text-[#030303] ml-0.5 transition-colors group-focus-within:text-cyan-600 select-none"
       >
-        {placeholder}
+        // {placeholder}
       </label>
 
-      {/* INPUT WRAPPER */}
+      {/* INPUT CONTAINER FRAME */}
       <div className="relative">
-
         <input
           id={name}
           name={name}
@@ -49,47 +48,40 @@ const FormInput = ({
           placeholder={`Enter ${placeholder.toLowerCase()}...`}
           className={`
             w-full
-            rounded-xl
-            px-4 py-3.5
-            text-base md:text-sm
-            text-white
-            
-            /* REDUCED PLACEHOLDER OPACITY */
-            placeholder:text-zinc-600
-            
-            bg-black/30
-            border
-            backdrop-blur-md
+            rounded-none
+            border-2
+            bg-white
+            px-4 py-3
+            text-xs font-bold uppercase tracking-wider
+            text-[#030303]
             outline-none
-            transition-all duration-300
+            transition-all duration-150
 
-            sm:py-4
+            /* CRUSTY HIGH-VISIBILITY PLACEHOLDER */
+            placeholder:text-zinc-400
+            placeholder:font-normal
+            placeholder:lowercase
 
-           /* AUTOFILL OVERRIDES */
-            autofill:bg-transparent
-            [&:-webkit-autofill]:bg-transparent
+            /* AUTOFILL INVERSION OVERRIDES */
+            autofill:bg-white
+            [&:-webkit-autofill]:bg-white
             [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]
-            [&:-webkit-autofill]:[-webkit-text-fill-color:white]
+            [&:-webkit-autofill]:[-webkit-text-fill-color:#030303]
 
             ${
               error
-                ? "border-red-500/40 focus:border-red-500 focus:bg-red-500/5"
-                : "border-white/10 focus:border-cyan-500/40 focus:bg-white/[0.05]"
+                ? "border-red-600 bg-red-50/30 focus:bg-white focus:shadow-[2px_2px_0px_rgba(220,38,38,1)]"
+                : "border-[#030303] focus:bg-white focus:shadow-[2px_2px_0px_rgba(3,3,3,1)]"
             }
-
-            focus:shadow-[0_0_20px_rgba(6,182,212,0.12)]
           `}
         />
-
-        {/* GLOW EFFECT */}
-        <div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition group-focus-within:opacity-100 ring-1 ring-cyan-500/20" />
       </div>
 
-      {/* ERROR */}
+      {/* ─── FLAT PITCH BRUTALIST ERROR TRACKER ─── */}
       {error && (
-        <p className="text-[11px] text-red-400 font-medium ml-1 flex items-center gap-1">
+        <p className="text-[10px] text-red-600 font-black uppercase tracking-widest ml-0.5 flex items-center gap-1 animate-in fade-in slide-in-from-top-1 duration-150">
           <span>✕</span>
-          {error}
+          <span>{error}</span>
         </p>
       )}
     </div>

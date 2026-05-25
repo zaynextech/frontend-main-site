@@ -1,79 +1,18 @@
 import type { LucideIcon } from "lucide-react";
-
 import {
-  ShieldCheck,
-  Users,
-  BarChart3,
-  FileSpreadsheet,
-  Bell,
-  CreditCard,
-  CalendarCheck,
-  CalendarDays,
-  Bot,
-  Workflow,
-  Receipt,
-  Cloud,
-  Smartphone,
-  Settings,
-  Building2,
-  ClipboardList,
-  Plug,
-  Mail,
-  Moon,
-  MessageSquare,
-  Activity,
-  Upload,
-  Image,
-  Search,
-  Globe,
-  Lock,
-  UserCircle,
-  LineChart,
-  CheckSquare,
-
-  BadgeDollarSign,
-  ShoppingCart,
-  Heart,
-  Package,
-  Languages,
-  Palette,
-  MousePointerSquareDashed,
-  FileText,
-  Webhook,
-  Database,
-  Server,
-  WifiOff,
-  Gauge,
-  Bug,
-  Shield,
-  RefreshCcw,
-  LayoutDashboard,
-  BookOpen,
-  Video,
-  Radio,
-  BellRing,
-  MapPinned,
-  Map,
-  ScanLine,
-  KeyRound,
-  Brain,
-  Mic,
-  Star,
-  MessageCircle,
-  FlaskConical,
-  Fingerprint,
-  FileCheck,
-  Blocks,
-  Cpu,
-  Store,
-  UsersRound,
-  GitBranch,
-  Route,
-  Boxes,
-  Container,
-  GitPullRequest,
-  Sparkles,
-  Ticket,
+  ShieldCheck, Users, BarChart3, FileSpreadsheet, Bell, CreditCard,
+  CalendarCheck, CalendarDays, Bot, Workflow, Receipt, Cloud,
+  Smartphone, Settings, Building2, ClipboardList, Plug, Mail,
+  Moon, MessageSquare, Activity, Upload, Image, Search, Globe,
+  Lock, UserCircle, LineChart, CheckSquare, BadgeDollarSign,
+  ShoppingCart, Heart, Package, Languages, Palette,
+  MousePointerSquareDashed, FileText, Webhook, Database, Server,
+  WifiOff, Gauge, Bug, Shield, RefreshCcw, LayoutDashboard,
+  BookOpen, Video, Radio, BellRing, MapPinned, Map, ScanLine,
+  KeyRound, Brain, Mic, Star, MessageCircle, FlaskConical,
+  Fingerprint, FileCheck, Blocks, Cpu, Store, UsersRound,
+  GitBranch, Route, Boxes, Container, GitPullRequest, Sparkles,
+  Ticket
 } from "lucide-react";
 
 interface Props {
@@ -99,7 +38,6 @@ const iconMap: Record<string, LucideIcon> = {
   "Audit Logs": ClipboardList,
   "API Integration": Plug,
   "Email Automation": Mail,
-
   "Dark Mode": Moon,
   "Real Time Chat": MessageSquare,
   "Live Updates": Activity,
@@ -178,11 +116,15 @@ export default function FeatureBadge({ name }: Props) {
   const Icon = iconMap[name] || Sparkles;
 
   return (
-    <div className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 transition-all duration-300 hover:border-cyan-500/20 hover:bg-white/[0.06]">
+    <div className="group/badge inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wider text-[#030303] select-none py-0.5">
+      {/* ⚡ Clean Cyber Bullet Block instead of heavy card frames */}
+      <span className="w-1.5 h-1.5 bg-cyan-500 shadow-[0_0_8px_rgba(34,211,238,0.7)] shrink-0 group-hover/badge:scale-125 transition-transform duration-200" />
+      
+      {/* Tiny Responsive Minimal Icon layout */}
+      <Icon className="h-3.5 w-3.5 text-zinc-600 transition-colors duration-200 group-hover/badge:text-cyan-600 shrink-0" />
 
-      <Icon className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
-
-      <span className="text-xs font-medium text-white">
+      {/* High-Contrast text matching the parent lists perfectly */}
+      <span className="text-zinc-800 transition-colors duration-200 group-hover/badge:text-black truncate">
         {name}
       </span>
     </div>

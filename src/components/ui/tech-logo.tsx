@@ -1,24 +1,9 @@
-import type { IconType } from "react-icons";
-
+import type { IconType } from "react-icons"; // ⚡ FIX: Imported from root react-icons package
 import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiNestjs,
-  SiLaravel,
-  SiDjango,
-  SiPostgresql,
-  SiMysql,
-  SiMongodb,
-  SiRedis,
-  SiDocker,
-  SiRailway,
-  SiVercel,
-  SiCloudinary,
-  SiOpenai,
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs,
+  SiExpress, SiNestjs, SiLaravel, SiDjango, SiPostgresql,
+  SiMysql, SiMongodb, SiRedis, SiDocker, SiRailway,
+  SiVercel, SiCloudinary, SiOpenai,
 } from "react-icons/si";
 
 import { Cpu } from "lucide-react";
@@ -52,15 +37,21 @@ export default function TechLogo({ name }: Props) {
   const Icon = iconMap[name];
 
   return (
-    <div className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 transition-all duration-300 hover:border-cyan-500/20 hover:bg-white/[0.06]">
+    <div className="group/tech inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-zinc-800 select-none py-0.5 pr-2">
+      {/* Minimalistic Editorial Prefix Icon Modifier instead of dark bounding boxes */}
+      <span className="text-cyan-600 font-bold tracking-normal transition-transform duration-200 group-hover/tech:scale-110 shrink-0 select-none mr-0.5">
+        #
+      </span>
 
+      {/* Tiny Responsive Brand Icon Display */}
       {Icon ? (
-        <Icon className="text-sm text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
+        <Icon className="text-[12px] text-zinc-500 transition-colors duration-200 group-hover/tech:text-black shrink-0" />
       ) : (
-        <Cpu className="h-4 w-4 text-cyan-400" />
+        <Cpu className="h-3 w-3 text-zinc-500 transition-colors duration-200 group-hover/tech:text-black shrink-0 stroke-[2.5]" />
       )}
 
-      <span className="text-xs font-medium text-zinc-300">
+      {/* High contrast pure typography anchor */}
+      <span className="transition-colors duration-200 group-hover/tech:text-[#030303]">
         {name}
       </span>
     </div>

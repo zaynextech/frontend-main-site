@@ -11,14 +11,14 @@ import PortfolioDetail from "../pages/PortfolioDetail";
 import Pricing from "../pages/Pricing";
 import Quote from "../pages/Quote";
 import Consultation from "../pages/Consultation";
-import Contact from "../pages/Contact";
-
 import NotFound from "../pages/NotFound";
 import Terms from "@/pages/Terms";
 import AgreementPage from "@/pages/AgreementPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import RefundPolicyPage from "@/pages/RefundPolicyPage";
 import CosmeticsLandingPage from "@/pages/Demo1";
+import ServicesPage from "../pages/Services";
+import ServiceDetails from "@/pages/ServiceDetails";
 
 
 
@@ -75,11 +75,6 @@ const AppRouter = () => {
             path="/consultation"
             element={<Consultation />}
           />
-
-          <Route
-            path="/contact"
-            element={<Contact />}
-          />
           <Route
             path="/Privacy"
             element={<PrivacyPolicyPage/>}
@@ -104,6 +99,11 @@ const AppRouter = () => {
             path="/Demo1"
             element={<CosmeticsLandingPage/>}
             />
+
+            <Route path="/" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetails />} />
+
+          
         </Route>
       
     
