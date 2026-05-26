@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star, Layers } from "lucide-react";
 import api from "@/lib/axios";
+import InteractiveGrid from "@/components/ui/interactive-grid";
 
 interface Project {
   id: string;
@@ -46,125 +47,138 @@ const FeaturedProjects = () => {
   }, []);
 
   return (
-    <section className="bg-[#030303] px-4 sm:px-6 py-12 md:py-16 lg:px-8 relative overflow-hidden antialiased w-full">
+    /* 
+      ─── 🛡️ ISOLATION SHIELD BASE ─── 
+      Added '!bg-[#FAFAFA]' and '!text-[#030303]' with explicit 'w-full relative z-20' 
+      to forcefully break out of any inherited dark theme classes from the home screen layout tree.
+    */
+    <section className="w-full !bg-[#FAFAFA] !text-[#030303] px-4 sm:px-6 py-20 lg:px-10 relative z-20 overflow-hidden antialiased font-sans select-none">
       
-      {/* Background System */}
-      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
-        {/* Background Image */}
+      {/* ─── 🖼️ BACKDROP WATERMARK BACKGROUND LAYER ─── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none opacity-15 mix-blend-multiply">
         <img
-          src="/images/bg.jpg"
+          src="/watermark.jpg"
           alt=""
           role="presentation"
           loading="eager"
-          className="h-full w-full object-cover scale-105 opacity-40 blur-[5px]"
+          className="h-full w-full object-cover scale-105"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
         />
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#030303]/30" />
-
-        {/* Decorative ambient radial glow */}
-        <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-cyan-500/5 blur-[100px] rounded-full" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl">
-        {/* Header */}
-        <header className="mb-10 md:mb-14">
-          <div className="flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-end border-b border-white/5 pb-6 md:pb-8">
-            <div className="flex flex-col gap-3 max-w-2xl"> 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-zinc-300 text-balance leading-[1.1] antialiased">
-                We build <span className="bg-clip-text text-transparent bg-gradient-to-b from-white/90 via-zinc-200 to-zinc-500">smart business</span> solutions.
+      {/* Structural Isolation Grid Sheet */}
+      <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
+        <InteractiveGrid />
+      </div>
+
+      {/* Local Cyan Atmospheric Accent Layer */}
+      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-cyan-400/[0.03] blur-[120px] rounded-full pointer-events-none z-0" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        
+        {/* ─── HERO HEADER ─── */}
+        <header className="mb-14 border-b-4 border-[#030303] pb-6">
+          <div className="flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-end text-left">
+            <div className="flex flex-col gap-2 max-w-2xl"> 
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-cyan-600 block">
+                // FEATURED TEMPLATES
+              </span>
+              <h2 className="text-4xl sm:text-4xl font-black tracking-tighter uppercase leading-[0.95] text-balance">
+                We craft <span className="text-zinc-400">premium digital</span> experiences.
               </h2>
             </div>
 
-            <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
-            
-              {/* Link */}
+            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 pb-1">
               <Link 
-                to="/portfolio" 
-                className="group flex items-center gap-2 text-[15px] uppercase tracking-[0.2em] font-bold text-white/80 transition-all hover:text-cyan-400"
-                aria-label="Explore global portfolio archive"
-              >
-                <span className="relative">
-                  Explore Archive
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyan-500 transition-all group-hover:w-full" />
-                </span>
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1.5 text-cyan-400 shrink-0" aria-hidden="true" />
-              </Link>
+              to="/portfolio" 
+              className="group flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#030303] transition-colors"
+              aria-label="Explore featured projects"
+            >
+              <span>View Showcase</span>
+
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 text-cyan-600 shrink-0 stroke-[3]"
+                aria-hidden="true"
+              />
+            </Link>
             </div>
           </div>
         </header>
 
-        {/* Dynamic Cards Grid */}
+        {/* ─── UNIFORM SYMMETRICAL CARDS GRID ─── */}
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((s) => (
-              <div key={s} className="flex flex-col gap-4 max-w-sm mx-auto w-full animate-pulse" aria-hidden="true">
-                <div className="aspect-[16/10] w-full rounded-xl bg-white/5 border border-white/5" />
+              <div key={s} className="flex flex-col gap-4 w-full max-w-sm mx-auto animate-pulse" aria-hidden="true">
+                <div className="aspect-[16/10] w-full rounded-none bg-zinc-200 border-2 border-[#030303]" />
                 <div className="space-y-2">
-                  <div className="h-2.5 w-16 rounded bg-white/20" />
-                  <div className="h-6 w-3/4 rounded bg-white/20" />
-                  <div className="h-3 w-full rounded bg-white/5" />
+                  <div className="h-3 w-16 bg-zinc-300" />
+                  <div className="h-6 w-3/4 bg-zinc-300" />
+                  <div className="h-4 w-full bg-zinc-200" />
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3 w-full">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:gap-y-14 md:grid-cols-2 lg:grid-cols-3 w-full">
             {projects.map((project, index) => (
               <article key={project.id} className="col-span-1 w-full max-w-sm lg:max-w-none mx-auto h-full">
                 <Link
                   to={`/portfolio/${project.slug}`}
-                  className="group relative flex flex-col h-full outline-none transition-all duration-500"
+                  className="group relative flex flex-col h-full outline-none"
                 >
-                  {/* Image Wrap */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/5 bg-zinc-900 shadow-xl transition-all duration-500 group-hover:border-cyan-500/20 group-hover:shadow-cyan-500/5 group-hover:-translate-y-1">
+                  
+                  {/* BRUTALIST UNIFORM IMAGE CONTAINER */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-none border-2 border-[#030303] bg-[#F5F5F3] shadow-[3px_3px_0px_rgba(3,3,3,1)] group-hover:shadow-[6px_6px_0px_rgba(3,3,3,1)] transition-all duration-300">
                     <img
                       src={project.thumbnailImage}
                       alt={`Showcase thumbnail for ${project.projectName}`}
                       loading="lazy"
-                      className="h-full w-full object-cover grayscale-[0.1] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0"
+                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.01]"
                     />
                     
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
-                    
-                    <div className="absolute top-3 left-3 transform -translate-y-1 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 select-none">
-                      <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] uppercase tracking-widest font-bold text-white/90">
+                    <div className="absolute top-2 left-2 z-20 select-none">
+                      <span className="px-2 py-0.5 border border-[#030303] bg-white text-[8px] uppercase tracking-widest font-black text-[#030303] shadow-[1px_1px_0px_rgba(3,3,3,1)]">
                         {project.category}
                       </span>
                     </div>
                   </div>
 
-                  {/* Info Block */}
-                  <div className="mt-4 flex flex-col flex-grow justify-between">
+                  {/* INFO DATA INTERFACE BLOCK */}
+                  <div className="mt-4 flex flex-col flex-grow justify-between text-left">
                     <div>
-                      <div className="flex items-center gap-2 select-none">
-                        <Layers className="h-3 w-3 text-cyan-500 shrink-0" aria-hidden="true" />
-                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-zinc-400">
-                          Project Case // 0{index + 1}
+                      <div className="flex items-center gap-2 select-none border-b border-zinc-100 pb-2">
+                        <Layers className="h-3 w-3 text-[#030303] shrink-0 stroke-[2.5]" aria-hidden="true" />
+                        <span className="text-[9px] uppercase tracking-[0.15em] font-black text-zinc-600">
+                          // Matrix case _ 0{index + 1}
                         </span>
                         
                         {project.rating && (
-                          <div className="ml-auto flex items-center gap-1 text-[9px] font-bold text-cyan-400/80" aria-label={`Project rated at ${project.rating} stars`}>
-                            <Star className="h-2.5 w-2.5 fill-cyan-400/10 text-cyan-400 shrink-0" aria-hidden="true" />
-                            {project.rating}
+                          <div className="ml-auto flex items-center gap-1 text-[9px] font-black text-cyan-600" aria-label={`Project rated at ${project.rating} stars`}>
+                            <Star className="h-2.5 w-2.5 fill-cyan-500/20 text-cyan-600 shrink-0 stroke-[2.5]" aria-hidden="true" />
+                            <span>{project.rating}</span>
                           </div>
                         )}
                       </div>
 
-                      <h3 className="mt-2 text-lg sm:text-xl font-bold tracking-tight text-white/80 transition-colors group-hover:text-cyan-400 break-words">
+                      <h3 className="mt-3 text-xl font-black uppercase tracking-tight text-[#030303] transition-colors group-hover:text-cyan-600 break-words leading-tight">
                         {project.projectName}
                       </h3>
 
-                      <p className="mt-1.5 text-sm leading-relaxed text-zinc-200 line-clamp-1 font-light">
+                      <p className="mt-1.5 text-xs font-medium leading-relaxed text-zinc-800 line-clamp-2 text-balance">
                         {project.shortDescription}
                       </p>
                     </div>
 
-                    <div className="mt-4 inline-flex items-center gap-2.5 text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-400 group-hover:text-white transition-colors select-none">
-                      <span className="w-6 h-[1px] bg-zinc-800 transition-all group-hover:w-9 group-hover:bg-cyan-500" aria-hidden="true" />
-                      View Case Study
+                    <div className="mt-5 inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-900 group-hover:text-[#030303] transition-colors select-none">
+                      <span className="text-zinc-300 font-normal group-hover:text-cyan-600 transition-colors">//</span>
+                      <span>View Case Study</span>
+                      <span className="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
                     </div>
                   </div>
+
                 </Link>
               </article>
             ))}

@@ -14,30 +14,18 @@ import InteractiveGrid from "../ui/interactive-grid";
 type ThemeKey = "primary" | "accent";
 
 interface ThemeStyles {
-  text: string;
-  hoverText: string;
-  bg: string;
-  border: string;
-  scan: string;
   dot: string;
+  badge: string;
 }
 
 const themes: Record<ThemeKey, ThemeStyles> = {
   primary: {
-    text: "text-cyan-400",
-    hoverText: "group-hover:text-cyan-300",
-    bg: "bg-cyan-500/10",
-    border: "border-cyan-500/20",
-    scan: "via-cyan-500/10",
-    dot: "bg-cyan-400",
+    dot: "bg-zinc-400",
+    badge: "text-zinc-600 border-zinc-300",
   },
   accent: {
-    text: "text-cyan-400",
-    hoverText: "group-hover:text-cyan-300",
-    bg: "bg-cyan-500/10",
-    border: "border-cyan-500/30",
-    scan: "via-cyan-500/10",
-    dot: "bg-cyan-400",
+    dot: "bg-cyan-500 shadow-[0_0_8px_rgba(34,211,238,0.6)]",
+    badge: "text-cyan-600 border-cyan-200 bg-cyan-50/50",
   }
 };
 
@@ -87,44 +75,60 @@ const services: ServiceItem[] = [
 
 const ServicesPreview = () => {
   return (
-    /* Reduced global max-width constraint to keep cards compactly contained */
-    <section className="relative mb-32 mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/5 bg-[#030303] px-4 py-12 antialiased sm:px-6 md:py-16 lg:px-8">
+    /* 🛡️ FORCEFUL ISOLATION OVERRIDE FROM HOMEPAGE BACKGROUNDS */
+    <section className="relative w-full !bg-[#FAFAFA] !text-[#030303] mb-32 mx-auto max-w-7xl overflow-hidden rounded-none border-y-4 border-[#030303] px-4 py-20 antialiased sm:px-6 lg:px-10 select-none z-20">
       
-      {/* Background System */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+      {/* ─── 🖼️ FULL-PAGE WATERMARK BACKGROUND LAYER ─── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-[0.035] mix-blend-multiply">
         <img
-          src="/images/bg.jpg"
+          src="/watermark.jpg"
           alt=""
           role="presentation"
           loading="eager"
-          className="h-full w-full object-cover scale-105 opacity-15 blur-[2px]"
+          className="h-full w-full object-cover scale-105"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
         />
-        <div className="absolute inset-0 bg-[#030303]/40" />
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[120px]" />
+      </div>
+
+      {/* Structural Isolation Grid Sheet */}
+      <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
         <InteractiveGrid />
       </div>
 
-      {/* Header */}
-<header className="relative z-10 mb-10 flex flex-col items-center text-center md:mb-14">
-  
-  <h2 className="max-w-3xl text-2xl font-extrabold leading-[1.15] tracking-tighter text-white/90 sm:text-4xl md:text-5xl">
-    Digital systems for{" "}
-    <span className="bg-gradient-to-b from-white/90 via-white to-zinc-500 bg-clip-text text-transparent">
-      modern brands
-    </span>
-  </h2>
+      {/* Local Cyan Atmospheric Accent Layer */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-400/[0.02] blur-[130px] rounded-full pointer-events-none z-0" />
 
-  <p className="mt-3 max-w-lg text-xs font-light leading-relaxed text-zinc-400 sm:text-sm md:mt-4">
-    Zaynex builds scalable platforms, websites, and modern business systems.
-  </p>
+      {/* ─── HEADER TERMINAL INTERFACE ─── */}
+      <header className="relative z-10 mb-14 border-b-4 border-[#030303] pb-6">
+        <div className="flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-end text-left">
+          <div className="flex flex-col gap-2 max-w-3xl">
+            <span className="text-[10px] font-black uppercase tracking-[0.25em] text-cyan-600 block">
+              // RECONSTRUCTED PLATFORM CAPABILITIES
+            </span>
+            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter uppercase leading-[0.95] text-balance">
+              Digital systems for <span className="text-zinc-400">modern brands.</span>
+            </h2>
+          </div>
+          <div className="max-w-[240px] text-left hidden md:block pb-1">
+            <p className="font-mono text-[9px] font-bold text-zinc-400 uppercase tracking-widest leading-normal">
+              Zaynex builds scalable platforms, websites, and modern business systems optimized for high legibility performance.
+            </p>
+          </div>
+        </div>
+      </header>
 
-</header>
-
-      {/* Services Grid */}
-      <div className="relative z-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 w-full">
+      {/* ─── SERVICES GRID UNIFORM ARCHITECTURE ─── */}
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 w-full items-stretch">
         {services.map((service, i) => {
           const style = themes[service.theme];
           const ServiceIcon = service.icon;
+
+          // Maintains variable column weights without making sizes uneven within rows
+          const gridSpans = service.featured
+            ? "md:col-span-12 lg:col-span-8"
+            : "md:col-span-6 lg:col-span-4";
 
           return (
             <motion.div
@@ -133,66 +137,55 @@ const ServicesPreview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10px" }}
               transition={{
-                delay: i * 0.04,
-                duration: 0.4,
+                delay: i * 0.03,
+                duration: 0.35,
               }}
               style={{ willChange: "transform" }}
-              className={
-                service.featured
-                  ? "col-span-1 md:col-span-2 lg:col-span-2 w-full mx-auto"
-                  : "col-span-1 w-full max-w-sm md:max-w-none mx-auto"
-              }
+              className={`${gridSpans} w-full flex`}
             >
-              <article className="h-full w-full">
-                {/* Reduced standard baseline height from 260px down to 220px to fix bulkiness */}
-                <Card className="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/5 bg-[#080808]/50 p-5 shadow-xl backdrop-blur-3xl transition-all duration-500 hover:border-cyan-500/20 hover:bg-[#101010]/60 sm:p-6 lg:p-7">
+              <article className="w-full flex">
+                <Card className="group relative w-full min-h-[200px] flex flex-col justify-between overflow-hidden rounded-none border-2 border-[#030303] bg-white p-5 sm:p-6 lg:p-7 shadow-[3px_3px_0px_rgba(3,3,3,1)] hover:shadow-[6px_6px_0px_rgba(3,3,3,1)] hover:bg-[#FAF9F5] transition-all duration-200 text-left">
                   
-                  {/* Cyan Hover Radial Glow */}
-                  <div className="pointer-events-none absolute top-0 left-0 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[60px] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-
-                  {/* Animated Grid Scan */}
-                  <div className={`pointer-events-none absolute inset-0 -translate-y-full bg-gradient-to-b from-transparent ${style.scan} to-transparent opacity-0 transition-all duration-1000 ease-in-out group-hover:translate-y-full group-hover:opacity-100`} />
-
-                  {/* Content Elements */}
-                  <div className="relative z-10 flex h-full flex-col justify-between gap-4">
+                  {/* Local Content Elements */}
+                  <div className="relative z-10 flex h-full flex-col justify-between gap-6 w-full">
                     <div>
                       {/* Top Action Indicators */}
-                      <div className="mb-4 flex items-center justify-between gap-4">
-                        {/* Icon Container */}
-                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-105 ${style.bg} ${style.text}`}>
+                      <div className="mb-4 flex items-center justify-between gap-4 select-none">
+                        
+                        {/* Brutalist Square Icon Box Container */}
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-none border-2 border-[#030303] bg-white text-[#030303] shadow-[2px_2px_0px_rgba(3,3,3,1)] group-hover:bg-zinc-50 transition-colors">
                           <ServiceIcon
-                            size={20}
-                            strokeWidth={1.5}
+                            size={18}
+                            className="stroke-[2.5]"
                             aria-hidden="true"
                           />
                         </div>
 
-                        {/* Network Status Dot */}
-                        <div className="flex items-center gap-1.5 select-none">
-                          <span className="text-[8px] uppercase tracking-widest text-zinc-600 transition-colors duration-300 group-hover:text-zinc-400 font-semibold">
-                            Active
-                          </span>
-                          <div className={`h-1 w-1 rounded-full shadow-[0_0_6px_currentColor] ${style.dot}`} />
+                        {/* Flat System Status Trace */}
+                        <div className="flex items-center gap-1.5 font-mono text-[9px] font-black uppercase tracking-wider">
+                          <span className="text-zinc-400">// STATUS:</span>
+                          <span className="text-zinc-800">ACTIVE</span>
+                          <div className={`h-1.5 w-1.5 rounded-none ${style.dot}`} />
                         </div>
                       </div>
 
                       {/* Descriptive Typography */}
-                      <div className="space-y-1.5">
-                        <h3 className={`text-lg font-bold tracking-tight text-white transition-all duration-300 ${style.hoverText}`}>
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-black uppercase tracking-tight text-[#030303] transition-colors group-hover:text-cyan-600">
                           {service.title}
                         </h3>
-                        <p className="text-xs font-light leading-relaxed text-zinc-400">
+                        <p className="text-xs font-medium leading-relaxed text-zinc-600 max-w-xl text-balance">
                           {service.desc}
                         </p>
                       </div>
                     </div>
 
                     {/* Meta Technology Tag Tracks */}
-                    <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+                    <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-zinc-100 w-full">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="select-none rounded-full border border-white/5 bg-white/5 px-2 py-0.5 text-[9px] font-medium text-zinc-400 transition-all duration-300 group-hover:border-white/10 group-hover:bg-white/10 group-hover:text-zinc-200"
+                          className="select-none rounded-none border border-[#030303] bg-white px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-zinc-700 shadow-[1px_1px_0px_rgba(3,3,3,1)] group-hover:bg-zinc-50"
                         >
                           {tag}
                         </span>

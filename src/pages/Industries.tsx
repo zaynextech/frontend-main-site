@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 // Imported external data matrix
 import { industries } from "@/components/Industries/Industries";
+import ServicesPreview from "@/components/home/ServicesPreview";
 
 export default function IndustriesPage() {
   const [activeTab, setActiveTab] = useState<string>("all");
@@ -208,6 +209,7 @@ export default function IndustriesPage() {
             })}
           </AnimatePresence>
         </motion.div>
+        <ServicesPreview />
       </section>
 
     </main>

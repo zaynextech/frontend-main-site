@@ -25,7 +25,7 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
   }, []);
 
   return (
-    <section className={`py-12 md:py-16 ${className || ""}`}>
+    <section className={`py-12 md:py-16 min-h-screen w-full${className || ""}`}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
           {/* Background System */}
@@ -55,17 +55,19 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
            {/* 1. Left Text Column */}
-<div className="md:col-span-7 flex flex-col items-start gap-6">
-  <h2 className="text-4xl lg:text-6xl font-black leading-none tracking-tighter text-white/90">
+<div className="md:col-span-7 flex flex-col items-start gap-4">
+
+  <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-[0.95] tracking-tighter text-white/90">
     Zaynex grows daily.{" "}
     <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-600">
-      Built for the future.
+      Modern by design.
     </span>
   </h2>
 
-  <p className="max-w-2xl text-sm leading-relaxed text-zinc-300 sm:text-lg font-light">
-    Growing stronger every day with innovation, technology, and scalable digital solutions.
+  <p className="max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed text-zinc-200 font-light">
+    Clean digital solutions for modern businesses.
   </p>
+
 </div>
 
             {/* Right Phone Column: Limited to 5 columns with a strict container scale max */}

@@ -103,7 +103,7 @@ export default function AboutPage() {
               <span className="block text-zinc-400">Digital Solutions</span>
             </h1>
 
-            <p className="text-zinc-700 leading-relaxed text-sm sm:text-base font-normal max-w-2xl text-balance">
+            <p className="text-zinc-950 leading-relaxed text-sm sm:text-base font-normal max-w-2xl text-balance">
               Zaynex is a modern digital solutions company focused on helping
               businesses build powerful online systems, scalable platforms, and
               premium digital experiences. We specialize in websites,
@@ -192,7 +192,7 @@ export default function AboutPage() {
           <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase">
             Why Businesses Choose Zaynex
           </h2>
-          <p className="mt-3 text-sm sm:text-base font-normal text-zinc-600 text-balance">
+          <p className="mt-3 text-sm sm:text-base font-normal text-zinc-950 text-balance">
             We focus on building premium digital systems that combine modern
             technology, clean design, business strategy, and scalable
             architecture.
@@ -222,7 +222,7 @@ export default function AboutPage() {
                     {item.title}
                   </h3>
 
-                  <p className="text-zinc-600 font-normal leading-relaxed text-xs">
+                  <p className="text-zinc-950 font-normal leading-relaxed text-xs">
                     {item.description}
                   </p>
                 </div>
@@ -245,7 +245,7 @@ export default function AboutPage() {
               Ready to Build With Zaynex?
             </h2>
 
-            <p className="mt-4 text-xs sm:text-sm font-normal leading-relaxed text-zinc-600 text-balance">
+            <p className="mt-4 text-xs sm:text-sm font-normal leading-relaxed text-zinc-950 text-balance">
               Let’s create scalable digital systems, modern websites, and
               premium business platforms that help your brand grow online.
             </p>

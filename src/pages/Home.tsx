@@ -1,6 +1,5 @@
 import Hero from "../components/home/Hero";
 // import Stats from "../components/home/Stats";
-import ServicesPreview from "../components/home/ServicesPreview";
 import TechStack from "../components/home/TechStack";
 import IndustriesPreview from "../components/home/IndustriesPreview";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
@@ -60,18 +59,9 @@ useEffect(() => {
 
       <FeaturedProjects />
       <PhoneShowcase />
-      <ServicesPreview />
-
       <Template1 />
-
-      
-
       <GlobalPresence />
-    
-  
-      
       <TechStack />
-      
       <IndustriesPreview />
     
         {/* <Stats /> */}

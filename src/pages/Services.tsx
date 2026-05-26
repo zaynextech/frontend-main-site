@@ -1,3 +1,4 @@
+import ServicesPreview from "@/components/home/ServicesPreview";
 import { motion } from "framer-motion";
 
 import {
@@ -314,7 +315,10 @@ export default function ServicesPage() {
             </motion.div>
           );
         })}
+
       </section>
+
+      <ServicesPreview />
     </main>
   );
 }
