@@ -147,14 +147,14 @@ const TechStack = () => {
         <div className="mb-12 space-y-4 text-center md:mb-16 md:text-left">
 
           <h2 className="max-w-4xl text-3xl font-black tracking-tighter text-white sm:text-4xl md:text-5xl">
-            Built for{" "}
+            Tools{" "}
             <span className="bg-gradient-to-b from-white to-zinc-600 bg-clip-text text-transparent">
-              scale & performance.
+              Used.
             </span>
           </h2>
 
-          <p className="max-w-xl text-xs leading-relaxed text-zinc-400 sm:text-sm">
-            Modern frameworks, scalable systems, and cloud-ready technologies for fast digital products.
+          <p className="max-w-xl text-xs leading-relaxed text-zinc-200 sm:text-sm">
+            Reliable, scalable, and cutting-edge technologies that power our solutions and drive innovation for our clients.
           </p>
         </div>
 
