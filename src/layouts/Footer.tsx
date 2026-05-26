@@ -8,18 +8,23 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa6"
 
 const footerLinks = {
   Solutions: [
-    { name: "Custom Software", path: "/services" },
-    { name: "SaaS Platforms", path: "/services" },
-    { name: "ERP Systems", path: "/services" },
-    { name: "LMS Solutions", path: "/services" },
-    { name: "Cloud Infrastructure", path: "/services" },
+    { name: "Custom Software", path: "services/web-development" },
+    { name: "Business Systems", path: "/services/business-systems" },
+    { name: "SEO Optimization", path: "/services/seo-optimization" },
+    { name: "LMS Solutions", path: "/services/lms-development" },
+    { name: "UI/UX Design", path: "/services/uiux-design" },
   ],
 
   Company: [
     { name: "About Us", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Contact", path: "/contact" },
-    { name: "Careers", path: "/careers" },
+    { name: "Industries", path: "/industries" },
+    {
+      name: "Client Site",
+      path: "https://client.zaynex.tech/",
+      target: "_blank",
+    }
+    
   ],
 
   Legal: [
@@ -161,6 +166,7 @@ const Footer = () => {
                           <span className="flex items-center text-cyan-500">
                             {link.name}
                           </span>
+                          
                         </span>
                       </span>
 

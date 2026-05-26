@@ -44,13 +44,13 @@ export default function IndustriesPage() {
             <div className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-600 select-none">
               // CORE SECTOR OVERLAYS // INDEX 2026
             </div>
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.85]">
+            <h1 className="text-5xl sm:text-7xl lg:text-4xl font-black tracking-tighter uppercase leading-[0.85]">
               Domain <br />
               <span className="text-zinc-400">Verticals</span>
             </h1>
           </div>
           <div className="max-w-xs text-right hidden md:block">
-            <p className="font-mono text-[9px] font-bold text-zinc-400 uppercase tracking-widest leading-normal">
+            <p className="font-mono text-[9px] font-bold text-zinc-950 uppercase tracking-widest leading-normal">
               Architecture protocol deployment node. Mapping custom operational engineering parameters onto global enterprise systems.
             </p>
           </div>
@@ -209,7 +209,6 @@ export default function IndustriesPage() {
             })}
           </AnimatePresence>
         </motion.div>
-        <ServicesPreview />
       </section>
 
     </main>
