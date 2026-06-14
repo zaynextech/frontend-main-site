@@ -27,29 +27,26 @@ const TechStack = () => {
       {/* ================= BACKGROUND HIGH-SPEED VIDEO ENGINE ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none transform-gpu contain-strict">
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          className="absolute inset-0 h-full w-full object-cover scale-105 opacity-100 filter brightness-[0.35] contrast-[1.15] blur-[3px] transform-gpu"
-          style={{ willChange: "transform" }}
-        >
-          <source src="/videos/hourglass.webm" type="video/webm" />
-          <source src="/videos/hourglass.mp4" type="video/mp4" />
-        </video>
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 h-full w-full object-cover scale-105 opacity-100 brightness-[0.35] contrast-[1.15] blur-[3px]"
+            >
+              <source
+                src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/hourglass_w7z9ch"
+                type="video/mp4"
+              />
+            </video>
         
         {/* Premium Layer Overlays */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Cyan Focus Glow Matrix */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.06)_0%,transparent_70%)]" />
+   
 
-        {/* Bottom Core Vignette Fade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-[#030303]/30" />
 
-        {/* Left Readability Contrast Shield */}
-        <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-[#030303] via-[#030303]/10 to-transparent" />
+       
       </div>
       {/* ============================================================ */}
 

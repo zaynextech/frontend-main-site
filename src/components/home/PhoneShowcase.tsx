@@ -32,21 +32,17 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
       {/* ================= BACKGROUND CINEMATIC CANVAS ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none transform-gpu contain-strict">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
+       <video
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          poster="/images/hourglass-poster.webp"
-          className="absolute inset-0 h-full w-full object-cover brightness-[0.6] contrast-[0.9] opacity-100  duration-500 "
+          poster="https://res.cloudinary.com/dn39ukq3q/video/upload/so_1/hourglass_w7z9ch.jpg"
+          className="absolute inset-0 h-full w-full object-cover brightness-[0.6] contrast-[0.9] opacity-100"
         >
           <source
-            src="/videos/hourglass.webm"
-            type="video/webm"
-          />
-          <source
-            src="/videos/hourglass.mp4"
+            src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/hourglass_w7z9ch"
             type="video/mp4"
           />
         </video>
@@ -180,12 +176,13 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
                       muted
                       loop
                       playsInline
-                      preload="auto"
+                      preload="none"
                       className="w-full h-full object-cover object-top antialiased transform-gpu scale-[1.01]"
-                      style={{ willChange: "transform" }}
                     >
-                      <source src="/videos/phone-preview.webm" type="video/webm" />
-                      <source src="/videos/phone-preview.mp4" type="video/mp4" />
+                      <source
+                        src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/phone-preview_pgbieo"
+                        type="video/mp4"
+                      />
                     </video>
                     
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70 pointer-events-none z-10" />

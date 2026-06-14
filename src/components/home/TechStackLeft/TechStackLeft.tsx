@@ -18,7 +18,7 @@ const scatteredTools = [
   { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4", delay: 0.04, sizeStyle: "w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 mt-1 lg:-mt-2", rotZ: "rotate-[3deg]", floatY: [3, -3, 3], duration: 4.6 },
   { name: "Vite", icon: SiVite, color: "#646CFF", delay: 0.05, sizeStyle: "w-20 h-20 xs:w-22 xs:h-22 sm:w-26 sm:h-26 mt-5 lg:mt-12", rotZ: "rotate-[5deg]", floatY: [-4, 3, -4], duration: 4.8 },
   { name: "OpenAI", icon: SiOpenai, color: "#FFFFFF", delay: 0.06, sizeStyle: "w-16 h-16 xs:w-20 xs:h-20 sm:w-22 sm:h-22 mt-0 lg:-mt-10", rotZ: "rotate-[-6deg]", floatY: [4, -3, 4], duration: 5.2 },
-  { name: "LangChain", icon: SiLangchain, color: "#1C3C3C", delay: 0.07, sizeStyle: "w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 mt-2 lg:mt-2", rotZ: "rotate-[2deg]", floatY: [-3, 3, -3], duration: 4.0 },
+  { name: "LangChain", icon: SiLangchain, color: "#339933", delay: 0.07, sizeStyle: "w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 mt-2 lg:mt-2", rotZ: "rotate-[2deg]", floatY: [-3, 3, -3], duration: 4.0 },
   { name: "Vector DB", icon: TbDatabaseSearch, color: "#FF9E0F", delay: 0.08, sizeStyle: "w-16 h-16 xs:w-18 xs:h-18 sm:w-18 sm:h-18 mt-1 lg:-mt-4", rotZ: "rotate-[-3deg]", floatY: [2, -4, 2], duration: 4.4 },
   { name: "AWS", icon: FaAws, color: "#FF9900", delay: 0.09, sizeStyle: "w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 mt-3 lg:mt-6", rotZ: "rotate-[8deg]", floatY: [-4, 4, -4], duration: 4.9 },
   { name: "Docker", icon: SiDocker, color: "#2496ED", delay: 0.10, sizeStyle: "w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 mt-0 lg:-mt-8", rotZ: "rotate-[-4deg]", floatY: [3, -3, 3], duration: 4.1 },

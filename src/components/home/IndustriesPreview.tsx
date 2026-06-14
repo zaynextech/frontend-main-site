@@ -94,18 +94,19 @@ const IndustryEcosystem = () => {
       {/* Background Video Engine */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none transform-gpu contain-strict">
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster="/images/hourglass-poster.webp"
-          className="absolute inset-0 h-full w-full object-cover brightness-[0.6] contrast-[0.9] opacity-100 transform-gpu"
-          style={{ willChange: "transform" }}
-        >
-          <source src="/videos/hourglass.webm" type="video/webm" />
-          <source src="/videos/hourglass.mp4" type="video/mp4" />
-        </video>
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="https://res.cloudinary.com/dn39ukq3q/video/upload/so_1/hourglass_w7z9ch.jpg"
+            className="absolute inset-0 h-full w-full object-cover brightness-[0.6] contrast-[0.9] opacity-100"
+          >
+            <source
+              src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/hourglass_w7z9ch"
+              type="video/mp4"
+            />
+          </video>
 
         <div className="absolute inset-0 bg-black/10" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_70%)]" />
