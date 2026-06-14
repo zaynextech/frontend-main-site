@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star, Layers } from "lucide-react";
 import api from "@/lib/axios";
-import InteractiveGrid from "@/components/ui/interactive-grid";
 
 interface Project {
   id: string;
@@ -68,10 +67,7 @@ const FeaturedProjects = () => {
         />
       </div>
 
-      {/* Structural Isolation Grid Sheet */}
-      <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none">
-        <InteractiveGrid />
-      </div>
+      
 
       {/* Local Cyan Atmospheric Accent Layer */}
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-cyan-400/[0.03] blur-[120px] rounded-full pointer-events-none z-0" />
@@ -86,7 +82,7 @@ const FeaturedProjects = () => {
                 // FEATURED TEMPLATES
               </span>
               <h2 className="text-4xl sm:text-4xl font-black tracking-tighter uppercase leading-[0.95] text-balance">
-                We craft <span className="text-zinc-400">premium digital</span> experiences.
+                We craft <span className="text-cyan-600">premium digital</span> experiences.
               </h2>
             </div>
 
@@ -166,8 +162,7 @@ const FeaturedProjects = () => {
                       <h3 className="mt-3 text-xl font-black uppercase tracking-tight text-[#030303] transition-colors group-hover:text-cyan-600 break-words leading-tight">
                         {project.projectName}
                       </h3>
-
-                      <p className="mt-1.5 text-xs font-medium leading-relaxed text-zinc-800 line-clamp-2 text-balance">
+                      <p className="mt-1.5 text-xs font-medium leading-relaxed text-black line-clamp-2 text-balance">
                         {project.shortDescription}
                       </p>
                     </div>

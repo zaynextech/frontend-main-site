@@ -1,3 +1,4 @@
+import GlobalPresence from "@/components/home/GlobalPresence";
 import ServicesPreview from "@/components/home/ServicesPreview";
 import { motion } from "framer-motion";
 
@@ -309,7 +310,7 @@ export default function ServicesPage() {
                 />
               </span>
             </Link>
-</div>
+                </div>
               </div>
 
             </motion.div>
@@ -317,6 +318,7 @@ export default function ServicesPage() {
         })}
 
       </section>
+      <GlobalPresence />
 
       <ServicesPreview />
     </main>

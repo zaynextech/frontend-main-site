@@ -1,33 +1,29 @@
+"use client";
+
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/Logo";
-import {
-
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa6";
 
 const footerLinks = {
-  Solutions: [
-    { name: "Custom Software", path: "services/web-development" },
+  // SEO optimization: Keyword-rich labeling structures
+  Services: [
+    { name: "Website Development", path: "/services/web-development" },
+    { name: "Custom Software", path: "/services/custom-software" },
     { name: "Business Systems", path: "/services/business-systems" },
-    { name: "SEO Optimization", path: "/services/seo-optimization" },
-    { name: "LMS Solutions", path: "/services/lms-development" },
+    { name: "SEO Services", path: "/services/seo-optimization" },
     { name: "UI/UX Design", path: "/services/uiux-design" },
   ],
 
   Company: [
     { name: "About Us", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Industries", path: "/industries" },
-    {
-      name: "Client Site",
-      path: "https://client.zaynex.tech/",
-      target: "_blank",
-    }
-    
+    { name: "Business Profile", path: "https://g.page/r/zaynextech-placeholder", isExternal: true },
+    { name: "Blog", path: "/blog" },
+    { name: "Client Site", path: "https://client.zaynex.tech/", isExternal: true }
   ],
 
-  Legal: [
+  Resources: [
     { name: "Privacy Policy", path: "/privacy" },
     { name: "Terms & Conditions", path: "/terms" },
     { name: "Service Agreement", path: "/agreement" },
@@ -37,146 +33,172 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden border-t border-cyan-500/10 bg-[#030303] px-4 py-12 antialiased w-full sm:px-6 md:py-16 lg:px-10">
-      
-      {/* Background Grid */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
+   <footer className="relative overflow-hidden border-t border-cyan-500/10 bg-[#07111A] px-4 py-12 w-full antialiased sm:px-6 md:py-16 lg:px-10">
 
-      {/* Glow */}
+  {/* Cyan Glow */}
+  <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl md:h-[400px] md:w-[400px]" />
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/30" />
+      
+      {/* ================= INJECTED ORGANIZATION SCHEMA ENGINE ================= */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Zaynex",
+            "url": "https://zaynex.tech",
+            "logo": "https://zaynex.tech/logo.png",
+            "email": "hello@zaynex.tech",
+            "telephone": "+919258885837",
+            "sameAs": [
+              "https://www.linkedin.com/company/zaynextech/",
+              "https://www.instagram.com/zaynex.tech"
+            ]
+          }),
+        }}
+      />
+
+      {/* ================= PREMIUM BACKGROUND GRAPHICS ENGINE ================= */}
+   
       <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl md:h-[400px] md:w-[400px]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-7xl w-full">
         
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-8 xl:gap-10">
+        {/* Main Columns Layout Workspace: Modified grid rules for exact mobile splitting */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-5 lg:gap-8 xl:gap-10 items-start">
           
-          {/* Brand */}
-          <div className="space-y-6 sm:col-span-2 lg:col-span-2">
+          {/* LEFT INTERFACE COLUMN: Full-width span on mobile, standard layout proportions on desktop panels */}
+          <div className="space-y-6 col-span-2 md:col-span-3 lg:col-span-2 relative z-10 contain-layout px-4 py-6 bg-neutral-950/20 backdrop-blur-[1px] rounded-2xl border border-white/5 group/brand">
             
-            <div className="flex items-center">
-              <Logo />
+            {/* ================= PREMIUM NEON HUD GLOW FRAME ================= */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none select-none text-cyan-500/40 transform-gpu"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+            >
+              <defs>
+                <filter id="footer-neon-glow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect
+                x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="16" ry="16"
+                stroke="currentColor" strokeWidth="1.5" strokeDasharray="500 100 1500"
+                filter="url(#footer-neon-glow)"
+                className="text-cyan-500/70 sm:text-cyan-400/70 transition-opacity duration-200"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+
+            {/* Hardware Geometric Accent Tag shifted to the breakout gap */}
+            <div className="absolute top-0 right-8 -translate-y-1/2 flex gap-1 items-center px-2 py-0.5 bg-[#030303] border border-cyan-500/30 rounded-full scale-75">
+              <span className="w-1 h-1 bg-white rounded-full animate-pulse" />
+              <span className="text-[7px] font-mono tracking-widest text-white uppercase">SYS.INFO</span>
+            </div>
+            {/* ============================================================ */}
+
+            {/* Brand Representation Block */}
+            <div className="space-y-4 relative z-10">
+              <div className="flex items-center text-white transition-colors duration-300 group-hover/brand:text-cyan-400">
+                <Logo />
+              </div>
+              <p className="break-words text-xs sm:text-sm leading-relaxed text-zinc-100">
+                Zaynex builds professional websites, custom software, and digital solutions that help businesses grow online.
+              </p>
             </div>
 
-            <p className="max-w-sm break-words text-sm leading-7 text-slate-400">
-              Zaynex designs and develops modern websites, SaaS platforms, and business systems for companies looking to grow online..
-            </p>
+            {/* Search Engine Optimized Contact Telemetry Layer */}
+            <div className="space-y-1.5 text-xs sm:text-sm text-zinc-100 font-mono relative z-10">
+              <p className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                <span className="text-cyan-500/80 text-[11px]">//</span> hello@zaynex.tech
+              </p>
+           
+              <p className="flex items-center gap-2 text-zinc-100 select-none">
+                <span className="text-zinc-100 text-[11px]">//</span> Serving clients worldwide
+              </p>
+            </div>
 
-            {/* Contact */}
-            <address
-                className="flex flex-wrap gap-4 not-italic"
-                aria-label="Social Media Links"
+            {/* Social Media Vectors Row */}
+            <address className="flex flex-wrap gap-2.5 not-italic relative z-10" aria-label="Social Media Links">
+              <a
+                href="https://www.instagram.com/zaynex.tech?igsh=aW1vdGxsaW4waHQy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/icon relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.01] p-2 text-zinc-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-500/20 hover:text-pink-400"
               >
-                
-                {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/zaynex.tech?igsh=aW1vdGxsaW4waHQy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Zaynex Instagram"
-                  className="group relative overflow-hidden rounded-2xl border border-pink-500/10 bg-white/[0.03] p-3 text-slate-400 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-pink-400/40 hover:bg-pink-500/10 hover:text-pink-300 hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-pink-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <FaInstagram size={14} className="relative z-10 transition-transform duration-300 group-hover/icon:scale-110" />
+              </a>
 
-                  <FaInstagram
-                    size={18}
-                    className="relative z-10 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-6"
-                    aria-hidden="true"
-                  />
-                </a>
+              <a
+                href="https://www.facebook.com/share/1CekcyqqMx/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/icon relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.01] p-2 text-zinc-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500/20 hover:text-blue-400"
+              >
+                <FaFacebook size={14} className="relative z-10 transition-transform duration-300 group-hover/icon:scale-110" />
+              </a>
 
-                {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/share/1CekcyqqMx/?mibextid=wwXIfr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Zaynex Facebook"
-                  className="group relative overflow-hidden rounded-2xl border border-blue-500/10 bg-white/[0.03] p-3 text-slate-400 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.35)]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <FaFacebook
-                    size={18}
-                    className="relative z-10 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-6"
-                    aria-hidden="true"
-                  />
-                </a>
-
-                {/* LinkedIn */}
-                <a
-                  href="https://www.linkedin.com/company/zaynextech/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Zaynex LinkedIn"
-                  className="group relative overflow-hidden rounded-2xl border border-cyan-500/10 bg-white/[0.03] p-3 text-slate-400 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.35)]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <FaLinkedin
-                    size={18}
-                    className="relative z-10 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-6"
-                    aria-hidden="true"
-                  />
-                </a>
-
-                {/* YouTube */}
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Zaynex YouTube"
-                  className="group relative overflow-hidden rounded-2xl border border-red-500/10 bg-white/[0.03] p-3 text-slate-400 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-red-400/40 hover:bg-red-500/10 hover:text-red-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.35)]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 to-red-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <FaYoutube
-                    size={18}
-                    className="relative z-10 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-6"
-                    aria-hidden="true"
-                  />
-                </a>
-              </address>
+              <a
+                href="https://www.linkedin.com/company/zaynextech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/icon relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.01] p-2 text-zinc-100 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500/20 hover:text-cyan-400"
+              >
+                <FaLinkedin size={14} className="relative z-10 transition-transform duration-300 group-hover/icon:scale-110" />
+              </a>
+            </address>
           </div>
 
-          {/* Navigation */}
+          {/* RIGHT COLUMNS: Navigation links stack as 2 clean rows on phone layouts, uniform on desktop */}
           {Object.entries(footerLinks).map(([title, links]) => (
-            <nav
-              key={title}
-              className="space-y-6"
+            <nav 
+              key={title} 
+              className="space-y-4 col-span-1 mt-2 md:mt-0 lg:mt-4" 
               aria-label={`${title} Links`}
             >
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-400/90">
+              <h4 className="text-[13px] sm:text-[15px] font-bold font-mono uppercase tracking-[0.2em] text-cyan-400 select-none">
                 {title}
               </h4>
 
-              <ul className="space-y-4">
+              <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      to={link.path}
-                      className="group relative inline-flex items-center overflow-hidden text-sm text-slate-400 transition-all duration-300 hover:text-white break-words"
-                    >
-                      {/* Animated Text */}
-                      <span className="relative h-5 overflow-hidden">
-                        <span className="flex flex-col transition-transform duration-300 group-hover:-translate-y-5">
-                          
-                          <span className="flex items-center">
-                            {link.name}
+                    {"isExternal" in link && link.isExternal ? (
+                      <a
+                        href={link.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative inline-flex items-center overflow-hidden text-xs sm:text-sm text-zinc-100 transition-all duration-200 hover:text-white break-words"
+                      >
+                        <span className="relative h-5 overflow-hidden">
+                          <span className="flex flex-col transition-transform duration-300 group-hover:-translate-y-5">
+                            <span className="flex items-center h-5 text-zinc-100 group-hover:text-white">{link.name}</span>
+                            <span className="flex items-center h-5 text-cyan-400 font-medium">{link.name}</span>
                           </span>
-
-                          <span className="flex items-center text-cyan-500">
-                            {link.name}
-                          </span>
-                          
                         </span>
-                      </span>
-
-                      {/* Arrow */}
-                      <ArrowUpRight
-                        size={14}
-                        className="ml-1 shrink-0 -translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
-                        aria-hidden="true"
-                      />
-                    </Link>
+                        <ArrowUpRight size={12} className="ml-0.5 shrink-0 -translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 text-cyan-400" />
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className="group relative inline-flex items-center overflow-hidden text-xs sm:text-sm text-zinc-400 transition-all duration-200 hover:text-white break-words"
+                      >
+                        <span className="relative h-5 overflow-hidden">
+                          <span className="flex flex-col transition-transform duration-300 group-hover:-translate-y-5">
+                            <span className="flex items-center h-5 text-zinc-100 group-hover:text-white">{link.name}</span>
+                            <span className="flex items-center h-5 text-cyan-400 font-medium">{link.name}</span>
+                          </span>
+                        </span>
+                        <ArrowUpRight size={12} className="ml-0.5 shrink-0 -translate-y-0.5 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 text-cyan-400" />
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -184,14 +206,13 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom */}
-          <div className="mt-12 flex items-center justify-center border-t border-cyan-500/10 pt-8 md:mt-16">
-            
-            <p className="text-center text-xs tracking-wide text-slate-400">
-              © {new Date().getFullYear()} Zaynex. All rights reserved.
-            </p>
+        {/* Bottom Metadata Block */}
+        <div className="mt-14 flex flex-col items-center gap-3 border-t border-white/5 pt-8 md:mt-16 text-center select-none pointer-events-none">
+          <p className="text-[12px] font-mono tracking-wider text-zinc-100 uppercase">
+            © {new Date().getFullYear()} ZAYNEX // DIGITAL PLATFORM CORP. ALL RIGHTS RESERVED.
+          </p>
+        </div>
 
-          </div>
       </div>
     </footer>
   );
