@@ -92,7 +92,7 @@ const IndustryEcosystem = () => {
     <section className="relative overflow-hidden rounded-[2rem] bg-[#030303] px-3 py-12 xs:px-4 sm:px-6 sm:py-20 lg:px-8 group/section contain-layout w-full select-none">
       
       {/* Background Video Engine */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none transform-gpu contain-strict">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
             autoPlay
             muted
@@ -108,7 +108,10 @@ const IndustryEcosystem = () => {
             />
           </video>
 
-        <div className="absolute inset-0 bg-black/10" />
+        {/* Premium Overlay */}
+        <div className="absolute inset-0 bg-black/30" />
+
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_70%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-[#030303]" />
         <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-[#030303] via-[#030303]/50 to-transparent" />

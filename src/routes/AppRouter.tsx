@@ -9,7 +9,6 @@ import Industries from "../pages/Industries";
 import Portfolio from "../pages/Portfolio";
 import PortfolioDetail from "../pages/PortfolioDetail";
 import Pricing from "../pages/Pricing";
-import Quote from "../pages/Quote";
 import Consultation from "../pages/Consultation";
 import NotFound from "../pages/NotFound";
 import Terms from "@/pages/Terms";
@@ -66,10 +65,7 @@ const AppRouter = () => {
             element={<Pricing />}
           />
 
-          <Route
-            path="/quote"
-            element={<Quote />}
-          />
+
 
           <Route
             path="/consultation"

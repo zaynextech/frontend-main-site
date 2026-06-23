@@ -25,25 +25,26 @@ const TechStack = () => {
       className="relative overflow-hidden rounded-[2rem] bg-[#030303] px-3 py-8 xs:px-4 sm:px-6 sm:py-16 md:py-24 lg:px-8 group/section w-full"
     >
       {/* ================= BACKGROUND HIGH-SPEED VIDEO ENGINE ================= */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none transform-gpu contain-strict">
+        {/* Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="absolute inset-0 h-full w-full object-cover scale-105 opacity-100 brightness-[0.35] contrast-[1.15] blur-[3px]"
-            >
-              <source
-                src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/hourglass_w7z9ch"
-                type="video/mp4"
-              />
-            </video>
-        
-        {/* Premium Layer Overlays */}
-        <div className="absolute inset-0 bg-black/10" />
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="https://res.cloudinary.com/dn39ukq3q/video/upload/so_1/hourglass_w7z9ch.jpg"
+            className="absolute inset-0 h-full w-full object-cover brightness-[0.6] contrast-[0.9] opacity-100"
+          >
+            <source
+              src="https://res.cloudinary.com/dn39ukq3q/video/upload/f_auto,q_auto/hourglass_w7z9ch"
+              type="video/mp4"
+            />
+          </video>
 
-   
+        {/* Premium Overlay */}
+        <div className="absolute inset-0 bg-black/30" />
+
 
 
        

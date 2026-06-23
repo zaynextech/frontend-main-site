@@ -42,6 +42,15 @@
     @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)];
   }
 
+  @keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
   /* Shimmer Animation fix: ensured opacity is visible but subtle */
   .animate-shimmer {
     background: linear-gradient(

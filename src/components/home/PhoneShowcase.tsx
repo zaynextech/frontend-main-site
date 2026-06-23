@@ -125,18 +125,22 @@ const PhoneShowcase = ({ className }: PhoneShowcaseProps) => {
               <p className="max-w-xl text-sm sm:text-sm lg:text-base leading-relaxed text-zinc-100 mt-2">
                 We build fast, responsive websites that look stunning and perform flawlessly across mobile, tablet, and desktop.
               </p>
-              <Link to="/quote" className="w-full sm:w-auto group">
-          <Button
-            size="lg"
-            className="w-full sm:w-auto h-11 sm:h-12 rounded-full bg-cyan-500 text-black font-bold px-6 sm:px-8 text-sm sm:text-base transition-all duration-200 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_25px_rgba(6,182,212,0.25)]"
-          >
-            Get a Free Quote
-            <ArrowRight
-              size={16}
-              className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </Button>
-        </Link>
+ <a
+  href="https://client.zaynex.tech/start-project"
+  className="w-full sm:w-auto group"
+>
+  <Button
+    size="lg"
+    className="w-full sm:w-auto h-11 sm:h-12 rounded-full bg-cyan-500 text-black font-bold px-6 sm:px-8 text-sm sm:text-base transition-all duration-200 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_25px_rgba(6,182,212,0.25)]"
+  >
+    Start Your Project
+
+    <ArrowRight
+      size={16}
+      className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+    />
+  </Button>
+</a>
             </div>
 
             {/* 2. Right Phone Column */}

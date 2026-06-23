@@ -1,93 +1,135 @@
 "use client";
 
-import React from 'react';
-import PageShowcase from './PageShowcase';
-import InteractiveGrid from '@/components/ui/interactive-grid';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Template1() {
+export default function PremiumQuoteHeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Typing Effect Engine Configuration
+  const words = ["grow.", "succeed.", "scale.", "thrive."];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Mouse move spotlight tracking
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Precise Typing and Deleting State Loop
+  useEffect(() => {
+    const currentFullWord = words[currentWordIndex];
+    let speed = isDeleting ? 40 : 100; // Speed parameters in ms
+
+    if (!isDeleting && displayText === currentFullWord) {
+      // Pause when word is completely typed out
+      speed = 1800;
+      const timeout = setTimeout(() => setIsDeleting(true), speed);
+      return () => clearTimeout(timeout);
+    } else if (isDeleting && displayText === "") {
+      // Switch cleanly to next word when deleted
+      setIsDeleting(false);
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setDisplayText(
+        isDeleting
+          ? currentFullWord.substring(0, displayText.length - 1)
+          : currentFullWord.substring(0, displayText.length + 1)
+      );
+    }, speed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentWordIndex]);
+
   return (
-    /* ⚡ RESTRICTED RENDER MAP: HIDDEN ON SMALL MOBILE RATIOS */
-    <div className="hidden md:flex min-h-[85vh] w-full bg-[#FAFAFA] text-[#030303] items-center justify-center p-6 lg:p-10 relative font-sans overflow-hidden select-none">
+    <section 
+      ref={containerRef}
+      className="w-full min-h-screen bg-white text-[#030303] flex items-center relative overflow-hidden border-t border-b border-zinc-100 group/section"
+    >
+      {/* Background Subtle Grid Layer */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f3f4f6_1px,transparent_1px),linear-gradient(to_bottom,#f3f4f6_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70 pointer-events-none" />
+      
+      {/* Dynamic Cursor Spotlight Effect */}
+      <div 
+        className="absolute w-[450px] h-[450px] bg-gradient-to-tr from-cyan-300/20 via-blue-200/10 to-transparent blur-[80px] rounded-full pointer-events-none transition-transform duration-500 ease-out hidden md:block"
+        style={{
+          transform: `translate3d(${mousePos.x - 225}px, ${mousePos.y - 225}px, 0)`,
+        }}
+      />
 
-      {/* ─── 🖼️ FULL-PAGE WATERMARK BACKGROUND LAYER ─── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20 mix-blend-multiply">
-        <img
-          src="/watermark.jpg"
-          alt=""
-          role="presentation"
-          className="w-full h-full object-cover object-center scale-105"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-          }}
-        />
-      </div>
-      {/* Ambient Cyber Brand Accent Glow */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-cyan-400/[0.03] blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-cyan-400/[0.02] blur-[120px] pointer-events-none" />
-
-      {/* ─── MAIN INDUSTRIAL GRID LAYOUT (COMPACT CONSTRAINED MAX-WIDTH) ─── */}
-      <div className="w-full max-w-[1280px] grid grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
-
-        {/* Left Content Column: Sharp Editorial Typography Headline */}
-        <div className="col-span-12 md:col-span-4 flex flex-col justify-center pl-4 lg:pl-6 text-left relative z-20">
-          <span className="text-[9px] font-black uppercase tracking-[0.25em] text-cyan-600 block mb-1">
-            // UI INTERFACE PRESETS
-          </span>
-
-          <h1 className="text-3xl lg:text-5xl font-black tracking-tighter uppercase leading-[0.95]">
-            Professional <br />
-            <span className="text-zinc-500">Templates</span>
-          </h1>
-
-          <div className="relative mt-3 max-w-[254px]">
-            <div className="relative mt-4 max-w-[254px]">
-            {/* ─── BRUTALIST EDITORIAL PORTFOLIO BUTTON ─── */}
-            <button className="group inline-flex items-center justify-center gap-2 rounded-none border-2 border-[#030303] bg-[#030303] px-5 h-10 text-[10px] font-black uppercase tracking-widest text-white hover:bg-white hover:text-[#030303] transition-colors duration-150 w-full">
-              <span>View Full Portfolio</span>
-            </button>
-
-            {/* ─── 🎯 CONTEXTUAL ARROW CONNECTOR CONTAINER ─── */}
-            {/* Positioned directly on the outer edge, pointing straight at the button */}
-            <div className="absolute left-[104%] top-1/2 -translate-y-1/2 w-16 lg:w-20 pointer-events-none hidden md:block select-none mix-blend-multiply opacity-90">
-              <img
-                src="/arrow.png"
-                alt="Directional Matrix Link"
-                className="w-full h-auto object-contain animate-pulse duration-1000 rotate-180"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-            </div>
-          </div>
-
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        {/* Core Layout Split Track Grid */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 lg:gap-12">
           
-          </div>
-        </div>
-
-        {/* Right Preview Column: Widescreen Viewport Containment Box */}
-        <div className="col-span-12 md:col-span-8 flex justify-end items-center relative z-10">
-
-          {/* 16:9 Showcase Wrapper Framework */}
-          <div className="group w-full max-w-[820px] transform scale-95 lg:scale-100 origin-right transition-all duration-300 ease-out">
-            
-            {/* Asymmetric Brutalist Grid Frame */}
-            <div className="relative rounded-none border-2 border-[#030303] bg-[#F5F5F3] p-3 transition-all duration-300 shadow-[4px_4px_0px_rgba(3,3,3,1)] group-hover:shadow-[7px_7px_0px_rgba(3,3,3,1)] group-hover:bg-white">
-
-              {/* Floating Layout Corner Stamp Descriptor */}
-              <span className="absolute top-1.5 left-1.5 z-20 font-mono text-[8px] font-black uppercase tracking-widest bg-white border border-[#030303] px-1.5 py-0.5 shadow-[1px_1px_0px_rgba(3,3,3,1)]">
-                SYS_PREVIEW_01
+          {/* Main Copy Typography Column */}
+          <div className="max-w-4xl text-left">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[1.05] text-[#030303] select-none">
+              Building{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-cyan-600 via-cyan-500 to-blue-700 bg-[size:200%_auto] hover:bg-right transition-all duration-1000 cursor-default">
+                digital solutions
+              </span>{" "}
+              that help businesses{" "}
+              
+              {/* Layout Anchor Container preventing layout shifting */}
+              <span className="relative inline-block min-w-[4.5ch]">
+                {/* Invisible element holding max layout block width to secure static spacing */}
+                <span className="invisible opacity-0 pointer-events-none select-none">succeed.</span>
+                
+                {/* Active animated text output layout container */}
+                <span className="absolute left-0 top-0 text-cyan-600 inline-flex items-center">
+                  {displayText}
+                  {/* Blinking Premium Caret Cursor Indicator */}
+                  <span className="w-[3px] h-[0.85em] bg-cyan-600 ml-0.5 animate-[pulse_0.8s_infinite] opacity-80" />
+                </span>
               </span>
-
-              {/* 🎬 EXACT CINEMATIC 16:9 MOCKUP CANVAS VIEWPORT */}
-              <div className="w-full aspect-video relative z-10 bg-white border border-zinc-200 overflow-hidden">
-                <PageShowcase />
-              </div>
-
-            </div>
+            </h2>
           </div>
-        </div>
 
+          {/* Action Trigger Block containing your Offset Shadow Button Design */}
+<div className="flex-shrink-0 w-full md:w-auto">
+  <a
+    href="https://client.zaynex.tech/book-meeting"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group/btn relative inline-flex items-center justify-center rounded-xl bg-[#030303] text-white px-8 h-14 text-sm font-bold tracking-tight transition-all duration-300 active:scale-95 hover:bg-cyan-600 hover:text-white w-full sm:w-auto"
+  >
+    <div className="absolute inset-0 w-full h-full rounded-xl border border-zinc-900 translate-x-1.5 translate-y-1.5 group-hover/btn:translate-x-0 group-hover/btn:translate-y-0 transition-transform duration-300 pointer-events-none -z-10 bg-white" />
+
+    <span>Book a Meeting</span>
+
+    <svg
+      className="ml-2.5 h-4 w-4 transition-all duration-300 transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+      />
+    </svg>
+  </a>
+</div>
+
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

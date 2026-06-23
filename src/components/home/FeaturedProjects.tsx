@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Star, Layers } from "lucide-react";
-import api from "@/lib/axios";
+import { ArrowRight, Layers } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 interface Project {
   id: string;
+  title: string;
   slug: string;
-  projectName: string;
   category: string;
-  shortDescription: string;
-  thumbnailImage: string;
-  rating?: string;
+  short_description: string | null;
+  thumbnail_url: string | null;
+  featured: boolean;
+  published: boolean;
 }
 
 const FeaturedProjects = () => {
@@ -20,166 +21,166 @@ const FeaturedProjects = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
-    const fetchFeaturedProjects = async () => {
+    async function loadProjects() {
       try {
-        const { data } = await api.get("/portfolio/featured/homepage");
+        const { data, error } = await supabase
+          .from("portfolio_projects")
+          .select("*")
+          .eq("featured", true)
+          .eq("published", true)
+          .order("created_at", { ascending: false })
+          .limit(8);
 
-        if (isMounted) {
-          setProjects(data.projects || []);
+        if (error) throw error;
+
+        if (mounted) {
+          setProjects(data ?? []);
         }
       } catch (error) {
-        console.error("Failed to fetch featured projects:", error);
+        console.error("Failed to load portfolio:", error);
       } finally {
-        if (isMounted) {
+        if (mounted) {
           setIsLoading(false);
         }
       }
-    };
+    }
 
-    fetchFeaturedProjects();
+    loadProjects();
 
     return () => {
-      isMounted = false;
+      mounted = false;
     };
   }, []);
 
   return (
-    /* 
-      ─── 🛡️ ISOLATION SHIELD BASE ─── 
-      Added '!bg-[#FAFAFA]' and '!text-[#030303]' with explicit 'w-full relative z-20' 
-      to forcefully break out of any inherited dark theme classes from the home screen layout tree.
-    */
-    <section className="w-full !bg-[#FAFAFA] !text-[#030303] px-4 sm:px-6 py-20 lg:px-10 relative z-20 overflow-hidden antialiased font-sans select-none">
-      
-      {/* ─── 🖼️ BACKDROP WATERMARK BACKGROUND LAYER ─── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none opacity-15 mix-blend-multiply">
-        <img
-          src="/watermark.jpg"
-          alt=""
-          role="presentation"
-          loading="eager"
-          className="h-full w-full object-cover scale-105"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-          }}
-        />
-      </div>
-
-      
-
-      {/* Local Cyan Atmospheric Accent Layer */}
-      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-cyan-400/[0.03] blur-[120px] rounded-full pointer-events-none z-0" />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
+    <section className="w-full bg-white text-zinc-900 py-8 sm:py-20 border-t border-zinc-100 relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 mb-5 sm:mb-12">
         
-        {/* ─── HERO HEADER ─── */}
-        <header className="mb-14 border-b-4 border-[#030303] pb-6">
-          <div className="flex w-full flex-col items-start justify-between gap-6 md:flex-row md:items-end text-left">
-            <div className="flex flex-col gap-2 max-w-2xl"> 
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-cyan-600 block">
-                // FEATURED TEMPLATES
-              </span>
-              <h2 className="text-4xl sm:text-4xl font-black tracking-tighter uppercase leading-[0.95] text-balance">
-                We craft <span className="text-cyan-600">premium digital</span> experiences.
+        {/* Header Layout Block */}
+        <header className="border-b border-zinc-100 pb-4 sm:pb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div className="space-y-1 sm:space-y-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-cyan-600">
+                  Our Work
+                </span>
+                <div className="h-px w-6 sm:w-8 bg-cyan-600/30" />
+              </div>
+
+              <h2 className="text-xl sm:text-4xl font-extrabold tracking-tight text-zinc-900">
+                Featured <span className="text-cyan-600">Projects</span>
               </h2>
             </div>
 
-            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 pb-1">
-              <Link 
-              to="/portfolio" 
-              className="group flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#030303] transition-colors"
-              aria-label="Explore featured projects"
-            >
-              <span>View Showcase</span>
-
-              <ArrowRight
-                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 text-cyan-600 shrink-0 stroke-[3]"
-                aria-hidden="true"
-              />
-            </Link>
+            {/* Custom Premium Offset Shadow Button Design */}
+            <div className="flex-shrink-0 w-full sm:w-auto">
+              <Link
+                to="/portfolio"
+                className="group/btn relative inline-flex items-center justify-center rounded-xl bg-[#030303] text-white px-8 h-14 text-sm font-bold tracking-tight transition-all duration-300 active:scale-95 hover:bg-cyan-600 hover:text-white w-full sm:w-auto"
+              >
+                <div className="absolute inset-0 w-full h-full rounded-xl border border-zinc-900 translate-x-1.5 translate-y-1.5 group-hover/btn:translate-x-0 group-hover/btn:translate-y-0 transition-transform duration-300 pointer-events-none -z-10 bg-white" />
+                <span>View All Projects</span>
+                <svg 
+                  className="ml-2.5 h-4 w-4 transition-all duration-300 transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </Link>
             </div>
           </div>
         </header>
-
-        {/* ─── UNIFORM SYMMETRICAL CARDS GRID ─── */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((s) => (
-              <div key={s} className="flex flex-col gap-4 w-full max-w-sm mx-auto animate-pulse" aria-hidden="true">
-                <div className="aspect-[16/10] w-full rounded-none bg-zinc-200 border-2 border-[#030303]" />
-                <div className="space-y-2">
-                  <div className="h-3 w-16 bg-zinc-300" />
-                  <div className="h-6 w-3/4 bg-zinc-300" />
-                  <div className="h-4 w-full bg-zinc-200" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:gap-y-14 md:grid-cols-2 lg:grid-cols-3 w-full">
-            {projects.map((project, index) => (
-              <article key={project.id} className="col-span-1 w-full max-w-sm lg:max-w-none mx-auto h-full">
-                <Link
-                  to={`/portfolio/${project.slug}`}
-                  className="group relative flex flex-col h-full outline-none"
-                >
-                  
-                  {/* BRUTALIST UNIFORM IMAGE CONTAINER */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-none border-2 border-[#030303] bg-[#F5F5F3] shadow-[3px_3px_0px_rgba(3,3,3,1)] group-hover:shadow-[6px_6px_0px_rgba(3,3,3,1)] transition-all duration-300">
-                    <img
-                      src={project.thumbnailImage}
-                      alt={`Showcase thumbnail for ${project.projectName}`}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.01]"
-                    />
-                    
-                    <div className="absolute top-2 left-2 z-20 select-none">
-                      <span className="px-2 py-0.5 border border-[#030303] bg-white text-[8px] uppercase tracking-widest font-black text-[#030303] shadow-[1px_1px_0px_rgba(3,3,3,1)]">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* INFO DATA INTERFACE BLOCK */}
-                  <div className="mt-4 flex flex-col flex-grow justify-between text-left">
-                    <div>
-                      <div className="flex items-center gap-2 select-none border-b border-zinc-100 pb-2">
-                        <Layers className="h-3 w-3 text-[#030303] shrink-0 stroke-[2.5]" aria-hidden="true" />
-                        <span className="text-[9px] uppercase tracking-[0.15em] font-black text-zinc-600">
-                          // Matrix case _ 0{index + 1}
-                        </span>
-                        
-                        {project.rating && (
-                          <div className="ml-auto flex items-center gap-1 text-[9px] font-black text-cyan-600" aria-label={`Project rated at ${project.rating} stars`}>
-                            <Star className="h-2.5 w-2.5 fill-cyan-500/20 text-cyan-600 shrink-0 stroke-[2.5]" aria-hidden="true" />
-                            <span>{project.rating}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <h3 className="mt-3 text-xl font-black uppercase tracking-tight text-[#030303] transition-colors group-hover:text-cyan-600 break-words leading-tight">
-                        {project.projectName}
-                      </h3>
-                      <p className="mt-1.5 text-xs font-medium leading-relaxed text-black line-clamp-2 text-balance">
-                        {project.shortDescription}
-                      </p>
-                    </div>
-
-                    <div className="mt-5 inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-900 group-hover:text-[#030303] transition-colors select-none">
-                      <span className="text-zinc-300 font-normal group-hover:text-cyan-600 transition-colors">//</span>
-                      <span>View Case Study</span>
-                      <span className="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
-                    </div>
-                  </div>
-
-                </Link>
-              </article>
-            ))}
-          </div>
-        )}
       </div>
+
+      {/* States Rendering Manager */}
+      {isLoading ? (
+        <div className="flex gap-3 sm:gap-6 px-3 max-w-7xl mx-auto overflow-hidden">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="animate-pulse border border-zinc-100 bg-zinc-50/50 rounded-xl sm:rounded-2xl w-[210px] sm:w-[360px] shrink-0 h-[240px] sm:h-[380px] p-3 sm:p-5 flex flex-col justify-between">
+              <div className="w-full h-24 sm:h-44 bg-zinc-200 rounded-lg sm:rounded-xl" />
+              <div className="space-y-1.5 mt-2 flex-1">
+                <div className="h-2.5 w-1/4 bg-zinc-200 rounded" />
+                <div className="h-3.5 w-3/4 bg-zinc-200 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : projects.length === 0 ? (
+        <div className="mx-auto max-w-7xl px-3">
+          <div className="rounded-xl border border-dashed border-zinc-200 bg-zinc-50/50 p-6 sm:p-12 text-center max-w-xs sm:max-w-md mx-auto flex flex-col items-center justify-center space-y-3 sm:space-y-4">
+            <div className="p-2 sm:p-3 bg-zinc-100 rounded-lg sm:rounded-xl border border-zinc-200 text-zinc-400">
+              <Layers size={20} className="sm:hidden" />
+              <Layers size={24} className="hidden sm:block" />
+            </div>
+            <div className="space-y-0.5 sm:space-y-1">
+              <h4 className="font-bold text-sm sm:text-base text-zinc-900">No featured projects found</h4>
+              <p className="text-[11px] sm:text-sm text-zinc-500 max-w-xs">We are currently updating our portfolio catalog. Check back soon.</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Infinite Marquee Strip Track */
+        <div className="relative w-full flex overflow-x-hidden group/marquee py-1">
+          {/* Edge Vignette Overlays for Depth */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          {/* Dual Render Track Loops */}
+          <div className="flex gap-3 sm:gap-6 shrink-0 animate-marquee min-w-full justify-around items-center group-hover/marquee:[animation-play-state:paused]">
+            {[...projects, ...projects].map((project, idx) => (
+              <Link
+                key={`${project.id}-${idx}`}
+                to={`/portfolio/${project.slug}`}
+                className="group/card flex flex-col justify-between overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-100 bg-zinc-50/40 hover:bg-white hover:border-zinc-200 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-zinc-200/40 w-[210px] sm:w-[360px] shrink-0"
+              >
+                <div>
+                  {/* Scaled Down Mobile Image Canvas */}
+                  {project.thumbnail_url ? (
+                    <div className="relative w-full h-24 sm:h-48 overflow-hidden bg-zinc-100 border-b border-zinc-100">
+                      <img
+                        src={project.thumbnail_url}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover/card:scale-102"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full h-24 sm:h-48 bg-zinc-100 border-b border-zinc-100 flex items-center justify-center text-zinc-300">
+                      <Layers size={18} className="sm:hidden" />
+                      <Layers size={32} className="hidden sm:block" />
+                    </div>
+                  )}
+
+                  {/* Compact Mobile Layout Typography */}
+                  <div className="p-3 sm:p-5 space-y-1">
+                    <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider text-cyan-700 bg-cyan-50 border border-cyan-100 rounded-full px-1.5 py-0.5 inline-block">
+                      {project.category}
+                    </span>
+
+                    <h3 className="text-xs sm:text-base font-bold tracking-tight text-zinc-900 group-hover/card:text-cyan-600 transition-colors truncate">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-[10px] sm:text-xs text-zinc-500 line-clamp-2 leading-relaxed h-6 sm:h-8">
+                      {project.short_description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="px-3 sm:px-5 pb-3 pt-0.5 flex items-center justify-end text-[9px] sm:text-[11px] font-bold text-zinc-400 group-hover/card:text-cyan-600 transition-colors gap-0.5">
+                  <span>Explore Case Study</span>
+                  <ArrowRight size={10} className="transition-transform duration-300 group-hover/card:translate-x-0.5 sm:w-3 sm:h-3" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

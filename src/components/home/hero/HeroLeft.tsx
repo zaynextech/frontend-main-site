@@ -139,18 +139,22 @@ export default function HeroLeft() {
         transition={{ ...transitionSpring, delay: 0.35 }}
         className="mt-6 xs:mt-8 flex flex-col sm:flex-row w-full sm:w-auto gap-3 justify-center lg:justify-start transform-gpu"
       >
-        <Link to="/quote" className="w-full sm:w-auto group">
-          <Button
-            size="lg"
-            className="w-full sm:w-auto h-11 sm:h-12 rounded-full bg-cyan-500 text-black font-bold px-6 sm:px-8 text-sm sm:text-base transition-all duration-200 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_25px_rgba(6,182,212,0.25)]"
-          >
-            Get a Free Quote
-            <ArrowRight
-              size={16}
-              className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </Button>
-        </Link>
+       <a
+        href="https://client.zaynex.tech/start-project"
+        className="w-full sm:w-auto group"
+      >
+        <Button
+          size="lg"
+          className="w-full sm:w-auto h-11 sm:h-12 rounded-full bg-cyan-500 text-black font-bold px-6 sm:px-8 text-sm sm:text-base transition-all duration-200 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_25px_rgba(6,182,212,0.25)]"
+        >
+          Start Your Project
+
+          <ArrowRight
+            size={16}
+            className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+          />
+        </Button>
+      </a>
 
         <Link to="/portfolio" className="w-full sm:w-auto group">
           <Button
